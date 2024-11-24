@@ -32,3 +32,10 @@ window.onclick = function (event) {
         modal.style.display = "none";
     }
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    const links = document.querySelectorAll('.link');
+    links.forEach((link, index) => {
+        link.style.setProperty('--order', index + 1);
+    });
+});
