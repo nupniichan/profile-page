@@ -5,20 +5,27 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>nupniichan</title>
-
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script type="module" defer src="main.js"></script>
 
     <link rel="stylesheet" href="main.css" />
 </head>
 
 <body>
+    <div id="particles-js"></div>
+    <div class="theme-transition-overlay"></div>
+    <div class="theme-switch-wrapper">
+        <label class="theme-switch">
+            <input type="checkbox" id="checkbox">
+            <div class="slider round"></div>
+        </label>
+    </div>
     <div class="loading-overlay">
         <div class="loader"></div>
-    </div>
-    <div style="position: fixed; top: 20px; right: 20px;">
+        <div class="footer" id="openModal">Ch</div>
     </div>
     <main>
-        <div class="avatarContainer">
+        <div class="avatarContainer" id="avatarContainer">
             <img class="avatar" src="Image/Avatar.gif" alt="click here" />
         </div>
         <div class="greetings">
@@ -27,13 +34,12 @@
         <div class="about">
             <div style="text-align: center;">
                 Chào cậu, mình là Nguyễn Phi Quốc Bảo <br>
-                は じ め ま し て~
+                <span class="typing-text"></span>
             </div>
         </div>
         <div class="links" id="links"></div>
     </main>
-    <br>
-    <div style="color: white;" id="openModal">@2024 - Quốc Bảo (nupniichan)</div>
+    <div class="footer" id="openModal">@2025 - Quốc Bảo (nupniichan)</div>
 </body>
 
 </html>
