@@ -1,6 +1,5 @@
 import { links } from "./links.js";
 
-// Particle.js config
 particlesJS('particles-js',
   {
     "particles": {
@@ -60,7 +59,6 @@ particlesJS('particles-js',
   }
 );
 
-// 3D Avatar Effect
 const avatar = document.querySelector('.avatarContainer');
 avatar.addEventListener('mousemove', (e) => {
     const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
@@ -72,7 +70,6 @@ avatar.addEventListener('mouseleave', () => {
     avatar.style.transform = 'rotateY(0) rotateX(0)';
 });
 
-// Typing Animation
 const texts = [
     "Rất vui được gặp cậu (≧∇≦)/",
     "は じ め ま し て (≧∇≦)/",
@@ -88,11 +85,11 @@ function eraseText() {
     const currentText = typingElement.textContent;
     if (currentText.length > 0) {
         typingElement.textContent = currentText.slice(0, -1);
-        setTimeout(eraseText, 100);
+        setTimeout(eraseText, 90);
     } else {
         textIndex = (textIndex + 1) % texts.length;
         charIndex = 0;
-        setTimeout(type, 500);
+        setTimeout(type, 200);
     }
 }
 
@@ -109,22 +106,18 @@ function type() {
 }
 
 function resetTyping() {
-    // Dừng animation hiện tại
     isTyping = false;
     
-    // Clear text và reset các biến
     typingElement.textContent = '';
     textIndex = 0;
     charIndex = 0;
     
-    // Đợi một chút trước khi bắt đầu lại
     setTimeout(() => {
         isTyping = true;
         type();
     }, 500);
 }
 
-// Bắt đầu animation khi trang load
 document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
         isTyping = true;
@@ -132,20 +125,31 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 3000);
 });
 
-// Theme Switcher
 const toggleSwitch = document.querySelector('#checkbox');
 const overlay = document.querySelector('.theme-transition-overlay');
 const particlesContainer = document.querySelector('#particles-js');
 
-// Thêm biến để kiểm soát
 let isThemeSwitching = false;
+
+function resetLinksAnimation() {
+    const linkElements = document.querySelectorAll('.link');
+    linkElements.forEach((link, index) => {
+        link.style.animation = 'none';
+        link.style.opacity = '0';
+        link.style.setProperty('--order', index + 1);
+        
+        link.offsetHeight;
+        
+        link.style.animation = '';
+        link.style.animation = 'slideIn 0.5s ease forwards';
+        link.style.animationDelay = `${index * 0.1}s`;
+    });
+}
 
 function switchTheme(e) {
     e.preventDefault();
     
-    if (isThemeSwitching) {
-        return;
-    }
+    if (isThemeSwitching) return;
 
     isThemeSwitching = true;
     toggleSwitch.disabled = true;
@@ -155,10 +159,8 @@ function switchTheme(e) {
     const isLightMode = e.target.checked;
     
     if (isLightMode) {
-        // Light mode
         particlesContainer.style.opacity = '0';
         
-        // Đợi overlay hiển thị hoàn toàn trước khi thay đổi theme
         setTimeout(() => {
             if (window.pJSDom && window.pJSDom[0]) {
                 window.pJSDom[0].pJS.particles.move.enable = false;
@@ -170,20 +172,16 @@ function switchTheme(e) {
             const img = new Image();
             img.src = 'Image/background.gif';
             img.onload = () => {
-                setTimeout(() => {
-                    overlay.classList.remove('active');
-                    setTimeout(() => {
-                        resetTyping();
-                    }, 100); // Đợi overlay biến mất một chút rồi mới reset typing
-                    isThemeSwitching = false;
-                    toggleSwitch.disabled = false;
-                    toggleSwitch.checked = true;
-                }, 400);
+                resetLinksAnimation();
+                resetTyping();
+                
+                overlay.classList.remove('active');
+                isThemeSwitching = false;
+                toggleSwitch.disabled = false;
+                toggleSwitch.checked = true;
             };
-        }, 400); // Giảm thời gian chờ xuống để transition mượt hơn
+        }, 400);
     } else {
-        // Dark mode
-        // Đợi overlay hiển thị hoàn toàn trước khi thay đổi theme
         setTimeout(() => {
             document.documentElement.setAttribute('data-theme', 'dark');
             localStorage.setItem('theme', 'dark');
@@ -193,24 +191,19 @@ function switchTheme(e) {
                 window.pJSDom[0].pJS.fn.particlesRefresh();
             }
             
-            setTimeout(() => {
-                particlesContainer.style.opacity = '1';
-                
-                setTimeout(() => {
-                    overlay.classList.remove('active');
-                    setTimeout(() => {
-                        resetTyping();
-                    }, 100); // Đợi overlay biến mất một chút rồi mới reset typing
-                    isThemeSwitching = false;
-                    toggleSwitch.disabled = false;
-                    toggleSwitch.checked = false;
-                }, 400);
-            }, 200);
+            particlesContainer.style.opacity = '1';
+            
+            resetLinksAnimation();
+            resetTyping();
+            
+            overlay.classList.remove('active');
+            isThemeSwitching = false;
+            toggleSwitch.disabled = false;
+            toggleSwitch.checked = false;
         }, 400);
     }
 }
 
-// Kiểm tra theme khi trang web load
 document.addEventListener('DOMContentLoaded', () => {
     const currentTheme = localStorage.getItem('theme');
     if (currentTheme === 'light' && window.pJSDom && window.pJSDom[0]) {
@@ -220,7 +213,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 toggleSwitch.addEventListener('change', switchTheme);
 
-// Check for saved theme preference
 const currentTheme = localStorage.getItem('theme');
 if (currentTheme) {
     document.documentElement.setAttribute('data-theme', currentTheme);
@@ -228,12 +220,10 @@ if (currentTheme) {
         toggleSwitch.checked = true;
     }
 } else {
-    // Nếu chưa có theme được lưu, set mặc định là light mode
     document.documentElement.setAttribute('data-theme', 'light');
     localStorage.setItem('theme', 'light');
     toggleSwitch.checked = true;
     
-    // Tắt particles khi ở light mode
     if (window.pJSDom && window.pJSDom[0]) {
         window.pJSDom[0].pJS.particles.move.enable = false;
     }
@@ -256,22 +246,18 @@ links.forEach((ele) => {
     allLinks += addLink(ele.name, ele.link, ele.image);
 });
 
-// Đợi cho loading screen biến mất rồi mới hiển thị links với animation
 document.addEventListener('DOMContentLoaded', () => {
-    // Thêm links vào container
     linkContainer.innerHTML = allLinks;
     
-    // Đợi loading overlay biến mất (3 giây)
     setTimeout(() => {
-        const linkElements = document.querySelectorAll('.link');
-        linkElements.forEach((link, index) => {
+        const links = document.querySelectorAll('.link');
+        links.forEach((link, index) => {
+            link.style.opacity = '0';
             link.style.setProperty('--order', index + 1);
-            // Reset animation
-            link.style.animation = 'none';
-            link.offsetHeight; // Trigger reflow
-            link.style.animation = null;
         });
-    }, 3000); // Thời gian này phải khớp với animation fadeOut của loading-overlay
+        
+        resetLinksAnimation();
+    }, 2000);
 });
 
 const openModal = document.getElementById("openModal");
