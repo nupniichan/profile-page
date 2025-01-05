@@ -133,16 +133,15 @@ let isThemeSwitching = false;
 
 function resetLinksAnimation() {
     const linkElements = document.querySelectorAll('.link');
-    linkElements.forEach((link, index) => {
-        link.style.animation = 'none';
-        link.style.opacity = '0';
-        link.style.setProperty('--order', index + 1);
-        
-        link.offsetHeight;
-        
-        link.style.animation = '';
-        link.style.animation = 'slideIn 0.5s ease forwards';
-        link.style.animationDelay = `${index * 0.1}s`;
+    
+    requestAnimationFrame(() => {
+        linkElements.forEach((link, index) => {
+            link.style.animation = 'none';
+            link.style.opacity = '0';
+            link.style.setProperty('--order', index + 1);
+            link.style.animation = 'slideIn 0.5s ease forwards';
+            link.style.animationDelay = `${index * 0.1}s`;
+        });
     });
 }
 
@@ -279,4 +278,3 @@ document.addEventListener('DOMContentLoaded', () => {
         link.style.setProperty('--order', index + 1);
     });
 });
-
