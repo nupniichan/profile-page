@@ -157,6 +157,42 @@ a {
     animation-delay: calc(var(--order) * 0.1s);
 }
 
+.link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    transition: all 0.5s ease;
+}
+
+.link:hover::before {
+    left: 100%;
+}
+
+.link:hover {
+    transform: scale(1.03);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.link span {
+    color: var(--link-text);
+    transition: all 0.3s ease;
+}
+
+.link:hover span {
+    transform: scale(1.05);
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.link:hover img {
+    transform: rotate(360deg) scale(1.1);
+    transition: all 0.5s ease;
+}
+
 @keyframes slideIn {
     0% {
         opacity: 0;
@@ -185,6 +221,11 @@ a {
     border: 1px solid rgba(255, 255, 255, 0.2);
     box-shadow: 0 8px 32px 0 var(--link-shadow);
     transition: all 0.5s ease;
+    position: relative;
+    overflow: hidden;
+    color: var(--link-text);
+    transform-origin: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .greetings {
@@ -230,66 +271,115 @@ a {
 
 .link:nth-child(1) {
     background: linear-gradient(90deg,
-            rgba(241, 241, 241, 0.1) 30%,
+            rgba(204, 204, 255, 0.1) 30%,
             rgba(113, 113, 113, 0.3) 100%),
-        #EBC7E8;
+        #CCCCFF;
     color: white;
+    text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+    border: 2px solid #A3A3FF;
 }
 
 .link:nth-child(2) {
     background: linear-gradient(90deg,
-            rgba(241, 241, 241, 0.1) 30%,
+            rgba(204, 204, 255, 0.1) 30%,
             rgba(113, 113, 113, 0.3) 100%),
-        #BFACE0;
-    color: white;
+        #B3B3FF;
+        color: white;
+        text-shadow:
+        -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000;
+        border: 2px solid #8C8CFF;
+        margin-top: 10px;
 }
 
 .link:nth-child(3) {
     background: linear-gradient(90deg,
-            rgba(241, 241, 241, 0.1) 30%,
+            rgba(204, 204, 255, 0.1) 30%,
             rgba(113, 113, 113, 0.3) 100%),
-        #A084CA;
-    color: white;
+        #99A3FF;
+        color: white;
+        text-shadow:
+        -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000;
+        border: 2px solid #7F7FFF;
 }
 
 .link:nth-child(4) {
     background: linear-gradient(90deg,
-            rgba(241, 241, 241, 0.1) 30%,
+            rgba(204, 204, 255, 0.1) 30%,
             rgba(113, 113, 113, 0.3) 100%),
-        #645CAA;
-    color: white;
+        #8C8CFF;
+        color: white;
+        text-shadow:
+        -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000;
+        border: 2px solid #6666FF;
 }
 
 .link:nth-child(5) {
     background: linear-gradient(90deg,
-            rgba(241, 241, 241, 0.1) 30%,
+            rgba(204, 204, 255, 0.1) 30%,
             rgba(113, 113, 113, 0.3) 100%),
-        #4b4585;
-    color: white;
+        #7F7FFF;
+        color: white;
+        text-shadow:
+        -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000;
+        border: 2px solid #4C4CFF;
 }
 
 .link:nth-child(6) {
     background: linear-gradient(90deg,
-            rgba(241, 241, 241, 0.1) 30%,
+            rgba(204, 204, 255, 0.1) 30%,
             rgba(113, 113, 113, 0.3) 100%),
-        #413b71;
-    color: white;
+        #6666FF;
+        color: white;
+        text-shadow:
+        -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000;
+        border: 2px solid #3333FF;
 }
 
 .link:nth-child(7) {
     background: linear-gradient(90deg,
-            rgba(241, 241, 241, 0.1) 30%,
+            rgba(204, 204, 255, 0.1) 30%,
             rgba(113, 113, 113, 0.3) 100%),
-        #352e5c;
+        #4C4CFF;
     color: white;
+    text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+    border: 2px solid #1A1AFF;
 }
 
 .link:nth-child(8) {
     background: linear-gradient(90deg,
-            rgba(241, 241, 241, 0.1) 30%,
+            rgba(204, 204, 255, 0.1) 30%,
             rgba(113, 113, 113, 0.3) 100%),
-        #211d38;
-    color: white;
+        #3333FF;
+    color: #3B3B6E;
+    text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+    border: 2px solid #1A1AFF;
 }
 
 .link:hover {
@@ -343,21 +433,6 @@ a {
     to {transform: scale(1);}
 }
 
-#quote {
-    font-size: 18px;
-    margin-bottom: 20px;
-    text-align: center;
-    color: #333;
-}
-
-#author {
-    position: absolute;
-    bottom: 10px;
-    right: 20px;
-    font-size: 14px;
-    color: #555;
-}
-
 @media (max-width: 600px) {
     body {
         background-size: cover;
@@ -378,10 +453,6 @@ a {
         width: 95vw;
     }
 
-    .link:hover {
-        transform: scale(1.01);
-    }
-
     .modal-content {
         width: 90%;
     }
@@ -394,6 +465,17 @@ a {
     .avatarContainer {
         width: 180px;
         height: 180px;
+    }
+    .link:hover {
+        transform: scale(1.02);
+    }
+    
+    .link:hover span {
+        letter-spacing: 0.2px;
+    }
+    
+    .link span {
+        color: var(--link-text);
     }
 }
 
@@ -494,7 +576,7 @@ a {
 }
 
 .footer {
-    margin-top: 2rem;
+    margin-top: 1rem;
     padding: 1rem;
     text-align: center;
     color: var(--text);
