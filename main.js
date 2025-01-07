@@ -128,39 +128,67 @@ document.addEventListener('DOMContentLoaded', () => {
 const toggleSwitch = document.querySelector('#checkbox');
 const overlay = document.querySelector('.theme-transition-overlay');
 const particlesContainer = document.querySelector('#particles-js');
+const loadingOverlay = document.querySelector('.loading-overlay');
+const mainContent = document.querySelector('main');
 
 let isThemeSwitching = false;
 
-function resetLinksAnimation() {
-    const linkElements = document.querySelectorAll('.link');
-    
-    requestAnimationFrame(() => {
-        linkElements.forEach((link, index) => {
-            link.style.animation = 'none';
-            link.style.opacity = '0';
-            link.style.setProperty('--order', index + 1);
-            link.style.animation = 'slideIn 0.5s ease forwards';
-            link.style.animationDelay = `${index * 0.1}s`;
-        });
+function fadeOutContent() {
+    return new Promise(resolve => {
+        mainContent.style.opacity = '0';
+        mainContent.style.transition = 'opacity 0.5s ease';
+        setTimeout(resolve, 500);
     });
 }
 
-function switchTheme(e) {
+function fadeInContent() {
+    return new Promise(resolve => {
+        mainContent.style.opacity = '1';
+        mainContent.style.transition = 'opacity 0.5s ease';
+        setTimeout(resolve, 500);
+    });
+}
+
+function showLoadingOverlay() {
+    return new Promise(resolve => {
+        loadingOverlay.style.display = 'flex';
+        loadingOverlay.style.opacity = '1';
+        loadingOverlay.style.visibility = 'visible';
+        loadingOverlay.style.animation = 'none';
+        
+        setTimeout(resolve, 1500); 
+    });
+}
+
+function hideLoadingOverlay() {
+    return new Promise(resolve => {
+        loadingOverlay.style.animation = 'fadeOut 0.5s ease-in-out forwards';
+        
+        setTimeout(() => {
+            loadingOverlay.style.display = 'none';
+            resolve();
+        }, 500);
+    });
+}
+
+async function switchTheme(e) {
     e.preventDefault();
     
     if (isThemeSwitching) return;
 
     isThemeSwitching = true;
     toggleSwitch.disabled = true;
-    overlay.classList.add('active');
-    isTyping = false;
     
     const isLightMode = e.target.checked;
     
-    if (isLightMode) {
-        particlesContainer.style.opacity = '0';
+    try {
+        await fadeOutContent();
         
-        setTimeout(() => {
+        await showLoadingOverlay();
+        
+        if (isLightMode) {
+            particlesContainer.style.opacity = '0';
+            
             if (window.pJSDom && window.pJSDom[0]) {
                 window.pJSDom[0].pJS.particles.move.enable = false;
             }
@@ -168,20 +196,21 @@ function switchTheme(e) {
             document.documentElement.setAttribute('data-theme', 'light');
             localStorage.setItem('theme', 'light');
             
-            const img = new Image();
-            img.src = 'Image/background.gif';
-            img.onload = () => {
-                resetLinksAnimation();
-                resetTyping();
-                
-                overlay.classList.remove('active');
-                isThemeSwitching = false;
-                toggleSwitch.disabled = false;
-                toggleSwitch.checked = true;
-            };
-        }, 400);
-    } else {
-        setTimeout(() => {
+            try {
+                await Promise.race([
+                    new Promise(resolve => {
+                        const img = new Image();
+                        img.src = 'Image/background.gif';
+                        img.onload = resolve;
+                    }),
+                    new Promise((_, reject) => 
+                        setTimeout(() => reject(new Error('Image load timeout')), 5000)
+                    )
+                ]);
+            } catch (error) {
+                console.error('Background image load failed:', error);
+            }
+        } else {
             document.documentElement.setAttribute('data-theme', 'dark');
             localStorage.setItem('theme', 'dark');
             
@@ -191,42 +220,46 @@ function switchTheme(e) {
             }
             
             particlesContainer.style.opacity = '1';
+        }
+        
+        resetLinksAnimation();
+        resetTyping();
+        
+        setTimeout(async () => {
+            await hideLoadingOverlay();
             
-            resetLinksAnimation();
-            resetTyping();
+            await fadeInContent();
             
-            overlay.classList.remove('active');
+            toggleSwitch.checked = isLightMode;
+            
             isThemeSwitching = false;
             toggleSwitch.disabled = false;
-            toggleSwitch.checked = false;
-        }, 400);
+        }, 500);
+        
+    } catch (error) {
+        console.error('Error during theme switch:', error);
+        loadingOverlay.style.display = 'none';
+        mainContent.style.opacity = '1';
+        isThemeSwitching = false;
+        toggleSwitch.disabled = false;
     }
 }
-
-document.addEventListener('DOMContentLoaded', () => {
-    const currentTheme = localStorage.getItem('theme');
-    if (currentTheme === 'light' && window.pJSDom && window.pJSDom[0]) {
-        window.pJSDom[0].pJS.particles.move.enable = false;
-    }
-});
 
 toggleSwitch.addEventListener('change', switchTheme);
 
-const currentTheme = localStorage.getItem('theme');
-if (currentTheme) {
-    document.documentElement.setAttribute('data-theme', currentTheme);
-    if (currentTheme === 'light') {
-        toggleSwitch.checked = true;
+document.addEventListener('DOMContentLoaded', () => {
+    const currentTheme = localStorage.getItem('theme');
+    if (currentTheme) {
+        document.documentElement.setAttribute('data-theme', currentTheme);
+        if (currentTheme === 'light') {
+            toggleSwitch.checked = true;
+            if (window.pJSDom && window.pJSDom[0]) {
+                window.pJSDom[0].pJS.particles.move.enable = false;
+            }
+        }
     }
-} else {
-    document.documentElement.setAttribute('data-theme', 'light');
-    localStorage.setItem('theme', 'light');
-    toggleSwitch.checked = true;
-    
-    if (window.pJSDom && window.pJSDom[0]) {
-        window.pJSDom[0].pJS.particles.move.enable = false;
-    }
-}
+    mainContent.style.opacity = '1';
+});
 
 const linkContainer = document.getElementById("links");
 
