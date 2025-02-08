@@ -123,6 +123,24 @@ document.addEventListener('DOMContentLoaded', () => {
         isTyping = true;
         type();
     }, 3000);
+
+    // Audio Player Logic
+    const audioButton = document.getElementById('audioButton');
+    const bgMusic = document.getElementById('bgMusic');
+    let isPlaying = false;
+
+    audioButton.addEventListener('click', () => {
+        if (isPlaying) {
+            bgMusic.pause();
+            audioButton.innerHTML = '<i class="fas fa-play"></i>';
+            audioButton.classList.remove('playing');
+        } else {
+            bgMusic.play();
+            audioButton.innerHTML = '<i class="fas fa-pause"></i>';
+            audioButton.classList.add('playing');
+        }
+        isPlaying = !isPlaying;
+    });
 });
 
 const toggleSwitch = document.querySelector('#checkbox');
@@ -200,7 +218,7 @@ async function switchTheme(e) {
                 await Promise.race([
                     new Promise(resolve => {
                         const img = new Image();
-                        img.src = 'Image/background.gif';
+                        img.src = 'Assets/Image/background.gif';
                         img.onload = resolve;
                     }),
                     new Promise((_, reject) => 

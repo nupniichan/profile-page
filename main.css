@@ -35,7 +35,7 @@ body {
 }
 
 [data-theme="light"] body {
-    background-image: url('Image/background.gif');
+    background-image: url('Assets/Image/background.gif');
 }
 
 :root body {
@@ -477,6 +477,21 @@ a {
     .link span {
         color: var(--link-text);
     }
+
+    .audio-player {
+        position: fixed;
+        bottom: 70px;
+        left: 10px;
+    }
+
+    #audioButton {
+        width: 40px;
+        height: 40px;
+    }
+
+    #audioButton i {
+        font-size: 14px;
+    }
 }
 
 .loading-overlay {
@@ -627,4 +642,36 @@ a {
 
 @keyframes spin {
     to { transform: rotate(360deg); }
+}
+
+.audio-player {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 100;
+}
+
+#audioButton {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    color: white;
+}
+
+#audioButton:hover {
+    transform: scale(1.1);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+#audioButton.playing {
+    background: rgba(102, 187, 106, 0.2);
+    border-color: rgba(102, 187, 106, 0.4);
 }

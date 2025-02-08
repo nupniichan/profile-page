@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>nupniichan</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script type="module" defer src="main.js"></script>
 
@@ -20,13 +21,22 @@
             <div class="slider round"></div>
         </label>
     </div>
+    <div class="audio-player">
+        <button id="audioButton">
+            <i class="fas fa-play"></i>
+        </button>
+        <audio id="bgMusic" loop>
+            <source src="Assets/Music/BGM.mp3" type="audio/mp3" volume="0.5">
+        </audio>
+    </div>
     <div class="loading-overlay">
+
         <div class="loader"></div>
         <div class="loading-text">Chờ xíu nha ( •̀ ω •́ )✧</div>
     </div>
     <main>
         <div class="avatarContainer" id="avatarContainer">
-            <img class="avatar" src="Image/Avatar.gif" alt="click here" />
+            <img class="avatar" src="Assets/Image/Avatar.gif" alt="click here" />
         </div>
         <div class="greetings">
             <div>Quốc Bảo</div>
