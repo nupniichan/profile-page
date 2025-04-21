@@ -127,19 +127,106 @@ document.addEventListener('DOMContentLoaded', () => {
     // Audio Player Logic
     const audioButton = document.getElementById('audioButton');
     const bgMusic = document.getElementById('bgMusic');
+    const musicProgress = document.getElementById('musicProgress');
+    const progressContainer = document.querySelector('.progress-container');
     let isPlaying = false;
+    const isMobile = () => window.innerWidth <= 600;
+
+    // Update progress bar function
+    function updateProgressBar() {
+        if (bgMusic.duration) {
+            const progressPercent = (bgMusic.currentTime / bgMusic.duration) * 100;
+            musicProgress.style.width = progressPercent + '%';
+        }
+        if (isPlaying) {
+            requestAnimationFrame(updateProgressBar);
+        }
+    }
+
+    // Ẩn thanh progress bar khi bài hát dừng (chỉ áp dụng cho mobile)
+    function hideProgressBar() {
+        if (isMobile()) {
+            progressContainer.style.opacity = '0';
+            progressContainer.style.transform = 'scaleX(0)';
+            progressContainer.style.width = '0';
+            // Thêm một timeout để đảm bảo CSS transition hoàn tất trước khi ẩn hoàn toàn
+            setTimeout(() => {
+                if (!isPlaying && isMobile()) {
+                    progressContainer.style.display = 'none';
+                }
+            }, 300);
+        }
+    }
+
+    // Hiển thị thanh progress bar khi bài hát phát
+    function showProgressBar() {
+        progressContainer.style.display = 'block';
+        // Thêm timeout nhỏ để đảm bảo display:block được áp dụng trước khi transition
+        setTimeout(() => {
+            progressContainer.style.opacity = '1';
+            progressContainer.style.transform = 'scaleX(1)';
+            progressContainer.style.width = isMobile() ? '90px' : '100px';
+        }, 10);
+    }
 
     audioButton.addEventListener('click', () => {
         if (isPlaying) {
             bgMusic.pause();
             audioButton.innerHTML = '<i class="fas fa-play"></i>';
             audioButton.classList.remove('playing');
+            
+            // Ẩn thanh progress bar trên thiết bị di động khi dừng phát
+            if (isMobile()) {
+                hideProgressBar();
+            }
         } else {
             bgMusic.play();
             audioButton.innerHTML = '<i class="fas fa-pause"></i>';
             audioButton.classList.add('playing');
+            
+            // Hiển thị thanh progress bar khi phát (trên mọi thiết bị)
+            showProgressBar();
+            
+            requestAnimationFrame(updateProgressBar);
         }
         isPlaying = !isPlaying;
+    });
+
+    // Điều chỉnh thanh progress khi resize màn hình
+    window.addEventListener('resize', () => {
+        const mobile = isMobile();
+        
+        if (isPlaying) {
+            progressContainer.style.width = mobile ? '90px' : '100px';
+        } else if (mobile) {
+            hideProgressBar();
+        } else {
+            // Trên desktop, reset trạng thái về mặc định để hiệu ứng hover hoạt động
+            progressContainer.style.display = 'block';
+            progressContainer.style.opacity = '0';
+            progressContainer.style.transform = 'scaleX(0)';
+            progressContainer.style.width = '100px';
+        }
+    });
+
+    // Kiểm tra trạng thái ban đầu của thanh progress bar
+    if (!isPlaying && isMobile()) {
+        hideProgressBar();
+    }
+
+    // Click on progress bar to seek
+    progressContainer.addEventListener('click', function(e) {
+        if (isPlaying) {
+            const progressRect = this.getBoundingClientRect();
+            const clickPosition = e.clientX - progressRect.left;
+            const percentageClicked = clickPosition / progressRect.width;
+            const seekTime = percentageClicked * bgMusic.duration;
+            
+            bgMusic.currentTime = seekTime;
+            
+            // Update progress bar immediately
+            musicProgress.style.width = (percentageClicked * 100) + '%';
+        }
     });
 });
 

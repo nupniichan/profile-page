@@ -189,8 +189,18 @@ a {
 }
 
 .link:hover img {
-    transform: rotate(360deg) scale(1.1);
+    transform: scale(1.2);
+    animation: pulseAnimation 1s infinite alternate;
     transition: all 0.5s ease;
+}
+
+@keyframes pulseAnimation {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.2);
+    }
 }
 
 @keyframes slideIn {
@@ -480,13 +490,46 @@ a {
 
     .audio-player {
         position: fixed;
-        bottom: 70px;
-        left: 10px;
+        bottom: 20px;
+        left: 15px;
+        flex-direction: row;
+        gap: 10px;
+        padding: 8px 12px;
+        border-radius: 25px;
+        width: auto;
+        max-width: 180px;
+        display: flex;
+        align-items: center;
+    }
+    
+    .progress-container {
+        position: relative;
+        width: 0;
+        height: 5px;
+        margin: 0;
+        padding: 0;
+        border-radius: 3px;
+        background: rgba(0, 0, 0, 0.3);
+        opacity: 0;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: width 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+        border: 1px solid rgba(204, 204, 255, 0.15);
+    }
+    
+    .progress-bar {
+        height: 100%;
+        width: 0%;
+        background: linear-gradient(90deg, #CCCCFF, #7070f5);
+        box-shadow: 0 0 8px rgba(204, 204, 255, 0.5);
+        border-radius: 2px;
     }
 
     #audioButton {
-        width: 40px;
-        height: 40px;
+        width: 32px;
+        height: 32px;
+        margin: 0;
+        flex-shrink: 0;
     }
 
     #audioButton i {
@@ -649,6 +692,42 @@ a {
     bottom: 20px;
     left: 20px;
     z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.progress-container {
+    width: 100px;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    overflow: hidden;
+    opacity: 0;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    position: relative;
+    border: 1px solid rgba(204, 204, 255, 0.3);
+    box-shadow: 0 0 5px rgba(204, 204, 255, 0.2);
+    padding: 2px;
+}
+
+/* Desktop: Hiển thị thanh tiến trình khi hover */
+@media (min-width: 601px) {
+    .audio-player:hover .progress-container {
+        opacity: 1;
+        transform: scaleX(1);
+    }
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #CCCCFF, #7070f5);
+    border-radius: 3px;
+    transition: width 0.1s linear;
+    box-shadow: 0 0 8px rgba(204, 204, 255, 0.5);
 }
 
 #audioButton {
@@ -673,5 +752,5 @@ a {
 
 #audioButton.playing {
     background: rgba(102, 187, 106, 0.2);
-    border-color: rgba(102, 187, 106, 0.4);
+    border-color: rgba(204, 207, 255, 0.4);
 }
