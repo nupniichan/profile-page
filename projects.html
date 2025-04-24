@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Projects - nupniichan</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script type="module" defer src="main.js"></script>
+
+    <link rel="stylesheet" href="animations.css" />
+    <link rel="stylesheet" href="main.css" />
+    <link rel="stylesheet" href="projects.css" />
+    <link rel="stylesheet" href="responsive.css" />
+</head>
+
+<body>
+    <div id="particles-js"></div>
+    <div class="theme-transition-overlay"></div>
+    
+    <!-- Sidebar Toggle Button -->
+    <div class="sidebar-toggle">
+        <i class="fas fa-bars"></i>
+    </div>
+    
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <img src="Assets/Image/avatar2.png" alt="Profile Picture" class="sidebar-avatar">
+            <h3>Quốc Bảo</h3>
+            <p>@nupniichan</p>
+        </div>
+
+        <nav class="sidebar-nav">
+            <ul>
+                <li><a href="index.html"><i class="fas fa-home"></i> Trang chủ</a></li>
+                <li><a href="about.html"><i class="fas fa-user"></i> Giới thiệu</a></li>
+                <li><a href="skills.html"><i class="fas fa-code"></i> Kỹ năng</a></li>
+                <li><a href="projects.html" class="active"><i class="fas fa-project-diagram"></i> Dự án</a></li>
+                <li><a href="education.html"><i class="fas fa-graduation-cap"></i> Học vấn</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> Liên hệ</a></li>
+            </ul>
+        </nav>
+
+        <div class="sidebar-footer">
+            <!-- Theme Switch -->
+            <div class="theme-switch-wrapper">
+                <label class="theme-switch">
+                    <input type="checkbox" id="checkbox">
+                    <div class="slider round"></div>
+                </label>
+                <span>Chế độ sáng / tối</span>
+            </div>
+
+            <!-- Audio Player -->
+            <div class="audio-player">
+                <button id="audioButton">
+                    <i class="fas fa-play"></i>
+                </button>
+                <div class="progress-container">
+                    <div class="progress-bar" id="musicProgress"></div>
+                </div>
+                <audio id="bgMusic" loop>
+                    <source src="Assets/Music/Hanayamata-opening.webm" type="audio/mp3" volume="0.5">
+                </audio>
+            </div>
+
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="loading-overlay">
+        <div class="loader"></div>
+        <div class="loading-text">Chờ xíu nha ( •̀ ω •́ )✧</div>
+    </div>
+
+    <main>
+        <div class="projects-container">
+            <!-- Skills Section -->
+            <section class="skills-section">
+                <div class="section-header">
+                    <h1>Kỹ Năng</h1>
+                </div>
+                <div class="skills-content">
+                    <div class="skill-category">
+                        <h3>Frontend Development</h3>
+                        <div class="skill-items">
+                            <div class="skill-item">
+                                <i class="fab fa-html5"></i>
+                                <span>HTML5</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <i class="fab fa-css3-alt"></i>
+                                <span>CSS3</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <i class="fab fa-js"></i>
+                                <span>JavaScript</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 80%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3>Backend Development</h3>
+                        <div class="skill-items">
+                            <div class="skill-item">
+                                <i class="fab fa-python"></i>
+                                <span>Python</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <i class="fas fa-database"></i>
+                                <span>SQL</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 75%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Projects Section -->
+            <section class="projects-section">
+                <div class="section-header">
+                    <h1>Dự Án</h1>
+                </div>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="Assets/Image/project1.jpg" alt="Project 1">
+                        </div>
+                        <div class="project-info">
+                            <h3>Personal Portfolio</h3>
+                            <p>A responsive personal portfolio website built with modern web technologies.</p>
+                            <div class="project-tags">
+                                <span>HTML5</span>
+                                <span>CSS3</span>
+                                <span>JavaScript</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="btn"><i class="fab fa-github"></i> Source</a>
+                                <a href="#" class="btn"><i class="fas fa-external-link-alt"></i> Demo</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="Assets/Image/project2.jpg" alt="Project 2">
+                        </div>
+                        <div class="project-info">
+                            <h3>Task Manager</h3>
+                            <p>A full-stack task management application with user authentication.</p>
+                            <div class="project-tags">
+                                <span>React</span>
+                                <span>Node.js</span>
+                                <span>MongoDB</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="btn"><i class="fab fa-github"></i> Source</a>
+                                <a href="#" class="btn"><i class="fas fa-external-link-alt"></i> Demo</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="footer">@2025 - Quốc Bảo (nupniichan)</div>
+    </main>
+</body>
+
+</html> 

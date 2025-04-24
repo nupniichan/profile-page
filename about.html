@@ -4,15 +4,15 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>nupniichan</title>
+    <title>About - nupniichan</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script type="module" defer src="main.js"></script>
 
     <link rel="stylesheet" href="animations.css" />
-    <link rel="stylesheet" href="home.css" />
-    <link rel="stylesheet" href="responsive.css" />
     <link rel="stylesheet" href="main.css" />
+    <link rel="stylesheet" href="about.css" />
+    <link rel="stylesheet" href="responsive.css" />
 </head>
 
 <body>
@@ -34,8 +34,8 @@
 
         <nav class="sidebar-nav">
             <ul>
-                <li><a href="index.html" class="active"><i class="fas fa-home"></i> Trang chủ</a></li>
-                <li><a href="about.html"><i class="fas fa-user"></i> Giới thiệu</a></li>
+                <li><a href="index.html"><i class="fas fa-home"></i> Trang chủ</a></li>
+                <li><a href="about.html" class="active"><i class="fas fa-user"></i> Giới thiệu</a></li>
                 <li><a href="skills.html"><i class="fas fa-code"></i> Kỹ năng</a></li>
                 <li><a href="projects.html"><i class="fas fa-project-diagram"></i> Dự án</a></li>
                 <li><a href="education.html"><i class="fas fa-graduation-cap"></i> Học vấn</a></li>
@@ -81,21 +81,37 @@
     </div>
 
     <main>
-        <div class="avatarContainer" id="avatarContainer">
-            <img class="avatar" src="Assets/Image/Avatar.gif" alt="click here" />
-        </div>
-        <div class="greetings">
-            <div>Quốc Bảo</div>
-        </div>
-        <div class="about" id="about">
-            <div style="text-align: center;">
-                Chào cậu, mình là Nguyễn Phi Quốc Bảo <br>
-                <span class="typing-text"></span>
+        <div class="about-container">
+            <div class="about-section">
+                <div class="about-header">
+                    <h1>Một chút về mình ദ്ദി(˵ •̀ ᴗ - ˵ ) ✧ </h1>
+                </div>
+                <div class="about-content">
+                    <div class="profile-card">
+                        <img src="Assets/Image/avatar2.png" alt="Profile Picture" class="profile-image">
+                        <h2>Nguyễn Phi Quốc Bảo</h2>
+                        <p class="title">nupniichan</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Giới thiệu</h3>
+                        <p>Mình là Nguyễn Phi Quốc Bảo, một người đam mê lập trình và thiết kế, đặc biệt là các công việc có liên quan tới AI.</p>
+                        <p>Thời gian rảnh mình thường kiếm cái gì đó mới để học / tìm hiểu để có thể tạo những gì mình thích từ việc lập trình, đồng thời nâng cao kiến thức của bản thân.</p>
+                        <p>Ngoài ra mình cũng thích xem anime, nghe nhạc và chơi các tựa game nhẹ đó. Bạn có muốn chơi cùng mình không? (´• ω •)ﾉ</p>
+                    </div>
+                    <div class="interests-card">
+                        <h3>Sở thích</h3>
+                        <ul>
+                            <li><i class="fas fa-code"></i>Lập trình</li>
+                            <li><i class="fa-solid fa-book"></i> Học hỏi</li>
+                            <li><i class="fas fa-music"></i>Nghe nhạc</li>
+                            <li><i class="fas fa-gamepad"></i>Chơi game</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="links" id="links"></div>
-        <div class="footer" id="openModal">@2025 - Quốc Bảo (nupniichan)</div>
+        <div class="footer">@2025 - Quốc Bảo (nupniichan)</div>
     </main>
 </body>
 
-</html>
+</html> 

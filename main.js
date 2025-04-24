@@ -59,16 +59,19 @@ particlesJS('particles-js',
   }
 );
 
+// Add avatar hover effect only if avatar exists
 const avatar = document.querySelector('.avatarContainer');
-avatar.addEventListener('mousemove', (e) => {
-    const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
-    const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
-    avatar.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
-});
+if (avatar) {
+    avatar.addEventListener('mousemove', (e) => {
+        const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+        const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+        avatar.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+    });
 
-avatar.addEventListener('mouseleave', () => {
-    avatar.style.transform = 'rotateY(0) rotateX(0)';
-});
+    avatar.addEventListener('mouseleave', () => {
+        avatar.style.transform = 'rotateY(0) rotateX(0)';
+    });
+}
 
 const texts = [
     "Rất vui được gặp cậu (≧∇≦)/",
@@ -118,115 +121,208 @@ function resetTyping() {
     }, 500);
 }
 
+let isSidebarOpen = localStorage.getItem('sidebarOpen') === 'true';
+
 document.addEventListener('DOMContentLoaded', () => {
-    setTimeout(() => {
-        isTyping = true;
-        type();
-    }, 3000);
+    // Typing animation
+    if (typingElement) {
+        setTimeout(() => {
+            isTyping = true;
+            type();
+        }, 3000);
+    }
+
+    // Sidebar Toggle
+    const sidebarToggle = document.querySelector('.sidebar-toggle');
+    const sidebar = document.querySelector('.sidebar');
+
+    if (sidebarToggle && sidebar) {
+        function toggleSidebar(open) {
+            isSidebarOpen = open;
+            localStorage.setItem('sidebarOpen', open);
+            
+            if (open) {
+                sidebar.classList.add('active');
+                sidebarToggle.querySelector('i').classList.remove('fa-bars');
+                sidebarToggle.querySelector('i').classList.add('fa-times');
+            } else {
+                sidebar.classList.remove('active');
+                sidebarToggle.querySelector('i').classList.remove('fa-times');
+                sidebarToggle.querySelector('i').classList.add('fa-bars');
+            }
+        }
+
+        // Set initial sidebar state
+        const hasVisitedBefore = localStorage.getItem('hasVisited');
+        if (hasVisitedBefore && isSidebarOpen) {
+            toggleSidebar(true);
+        } else {
+            toggleSidebar(false);
+        }
+
+        sidebarToggle.addEventListener('click', () => {
+            toggleSidebar(!isSidebarOpen);
+        });
+
+        // Close sidebar when clicking outside
+        document.addEventListener('click', (e) => {
+            if (isSidebarOpen && 
+                !sidebar.contains(e.target) && 
+                !sidebarToggle.contains(e.target) &&
+                !e.target.closest('.sidebar')) {
+                toggleSidebar(false);
+            }
+        });
+    }
+
+    // Sidebar links
+    const sidebarLinks = document.querySelectorAll('.sidebar-nav a');
+    if (sidebarLinks.length > 0) {
+        sidebarLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                
+                // If it's an anchor link (contains #), handle smooth scrolling
+                if (href.includes('#') && !href.startsWith('#')) {
+                    const [pagePath, anchor] = href.split('#');
+                    // If we're already on the same page
+                    if (window.location.pathname.endsWith(pagePath)) {
+                        e.preventDefault();
+                        const targetElement = document.querySelector(`#${anchor}`);
+                        if (targetElement) {
+                            window.scrollTo({
+                                top: targetElement.offsetTop - 50,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                }
+                
+                // Add active class to the clicked link
+                sidebarLinks.forEach(link => link.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    }
 
     // Audio Player Logic
     const audioButton = document.getElementById('audioButton');
     const bgMusic = document.getElementById('bgMusic');
     const musicProgress = document.getElementById('musicProgress');
     const progressContainer = document.querySelector('.progress-container');
-    let isPlaying = false;
-    const isMobile = () => window.innerWidth <= 600;
 
-    // Update progress bar function
-    function updateProgressBar() {
-        if (bgMusic.duration) {
-            const progressPercent = (bgMusic.currentTime / bgMusic.duration) * 100;
-            musicProgress.style.width = progressPercent + '%';
-        }
-        if (isPlaying) {
-            requestAnimationFrame(updateProgressBar);
-        }
-    }
+    if (audioButton && bgMusic && musicProgress && progressContainer) {
+        let isPlaying = false;
+        const isMobile = () => window.innerWidth <= 600;
 
-    // Ẩn thanh progress bar khi bài hát dừng (chỉ áp dụng cho mobile)
-    function hideProgressBar() {
-        if (isMobile()) {
-            progressContainer.style.opacity = '0';
-            progressContainer.style.transform = 'scaleX(0)';
-            progressContainer.style.width = '0';
-            // Thêm một timeout để đảm bảo CSS transition hoàn tất trước khi ẩn hoàn toàn
-            setTimeout(() => {
-                if (!isPlaying && isMobile()) {
-                    progressContainer.style.display = 'none';
-                }
-            }, 300);
-        }
-    }
-
-    // Hiển thị thanh progress bar khi bài hát phát
-    function showProgressBar() {
-        progressContainer.style.display = 'block';
-        // Thêm timeout nhỏ để đảm bảo display:block được áp dụng trước khi transition
-        setTimeout(() => {
-            progressContainer.style.opacity = '1';
-            progressContainer.style.transform = 'scaleX(1)';
-            progressContainer.style.width = isMobile() ? '90px' : '100px';
-        }, 10);
-    }
-
-    audioButton.addEventListener('click', () => {
-        if (isPlaying) {
-            bgMusic.pause();
-            audioButton.innerHTML = '<i class="fas fa-play"></i>';
-            audioButton.classList.remove('playing');
-            
-            // Ẩn thanh progress bar trên thiết bị di động khi dừng phát
-            if (isMobile()) {
-                hideProgressBar();
+        function updateProgressBar() {
+            if (bgMusic.duration) {
+                const progressPercent = (bgMusic.currentTime / bgMusic.duration) * 100;
+                musicProgress.style.width = progressPercent + '%';
             }
-        } else {
-            bgMusic.play();
-            audioButton.innerHTML = '<i class="fas fa-pause"></i>';
-            audioButton.classList.add('playing');
-            
-            // Hiển thị thanh progress bar khi phát (trên mọi thiết bị)
-            showProgressBar();
-            
-            requestAnimationFrame(updateProgressBar);
+            if (isPlaying) {
+                requestAnimationFrame(updateProgressBar);
+            }
         }
-        isPlaying = !isPlaying;
-    });
 
-    // Điều chỉnh thanh progress khi resize màn hình
-    window.addEventListener('resize', () => {
-        const mobile = isMobile();
-        
-        if (isPlaying) {
-            progressContainer.style.width = mobile ? '90px' : '100px';
-        } else if (mobile) {
-            hideProgressBar();
-        } else {
-            // Trên desktop, reset trạng thái về mặc định để hiệu ứng hover hoạt động
+        function hideProgressBar() {
+            if (isMobile()) {
+                progressContainer.style.opacity = '0';
+                progressContainer.style.transform = 'scaleX(0)';
+                progressContainer.style.width = '0';
+                setTimeout(() => {
+                    if (!isPlaying && isMobile()) {
+                        progressContainer.style.display = 'none';
+                    }
+                }, 300);
+            }
+        }
+
+        function showProgressBar() {
             progressContainer.style.display = 'block';
-            progressContainer.style.opacity = '0';
-            progressContainer.style.transform = 'scaleX(0)';
-            progressContainer.style.width = '100px';
+            setTimeout(() => {
+                progressContainer.style.opacity = '1';
+                progressContainer.style.transform = 'scaleX(1)';
+                progressContainer.style.width = isMobile() ? '90px' : '100px';
+            }, 10);
         }
-    });
 
-    // Kiểm tra trạng thái ban đầu của thanh progress bar
-    if (!isPlaying && isMobile()) {
-        hideProgressBar();
+        audioButton.addEventListener('click', (e) => {
+            e.stopPropagation();
+            
+            if (isPlaying) {
+                bgMusic.pause();
+                audioButton.innerHTML = '<i class="fas fa-play"></i>';
+                audioButton.classList.remove('playing');
+                
+                if (isMobile()) {
+                    hideProgressBar();
+                }
+            } else {
+                bgMusic.play();
+                audioButton.innerHTML = '<i class="fas fa-pause"></i>';
+                audioButton.classList.add('playing');
+                
+                showProgressBar();
+                
+                requestAnimationFrame(updateProgressBar);
+            }
+            isPlaying = !isPlaying;
+        });
+
+        window.addEventListener('resize', () => {
+            const mobile = isMobile();
+            
+            if (isPlaying) {
+                progressContainer.style.width = mobile ? '90px' : '100px';
+            } else if (mobile) {
+                hideProgressBar();
+            } else {
+                progressContainer.style.display = 'block';
+                progressContainer.style.opacity = '0';
+                progressContainer.style.transform = 'scaleX(0)';
+                progressContainer.style.width = '100px';
+            }
+        });
+
+        if (!isPlaying && isMobile()) {
+            hideProgressBar();
+        }
+
+        progressContainer.addEventListener('click', function(e) {
+            e.stopPropagation();
+            
+            if (isPlaying) {
+                const progressRect = this.getBoundingClientRect();
+                const clickPosition = e.clientX - progressRect.left;
+                const percentageClicked = clickPosition / progressRect.width;
+                const seekTime = percentageClicked * bgMusic.duration;
+                
+                bgMusic.currentTime = seekTime;
+                
+                musicProgress.style.width = (percentageClicked * 100) + '%';
+            }
+        });
     }
 
-    // Click on progress bar to seek
-    progressContainer.addEventListener('click', function(e) {
-        if (isPlaying) {
-            const progressRect = this.getBoundingClientRect();
-            const clickPosition = e.clientX - progressRect.left;
-            const percentageClicked = clickPosition / progressRect.width;
-            const seekTime = percentageClicked * bgMusic.duration;
+    // Highlight active section while scrolling
+    window.addEventListener('scroll', function() {
+        const scrollPosition = window.scrollY;
+        
+        document.querySelectorAll('.section').forEach(section => {
+            const sectionTop = section.offsetTop - 100;
+            const sectionHeight = section.offsetHeight;
+            const sectionId = section.getAttribute('id');
             
-            bgMusic.currentTime = seekTime;
-            
-            // Update progress bar immediately
-            musicProgress.style.width = (percentageClicked * 100) + '%';
-        }
+            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                sidebarLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === '#' + sectionId) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+        });
     });
 });
 
@@ -234,43 +330,44 @@ const toggleSwitch = document.querySelector('#checkbox');
 const overlay = document.querySelector('.theme-transition-overlay');
 const particlesContainer = document.querySelector('#particles-js');
 const loadingOverlay = document.querySelector('.loading-overlay');
-const mainContent = document.querySelector('main');
+const mainContent = document.querySelector('main') || document.body;
 
 let isThemeSwitching = false;
 
 function fadeOutContent() {
     return new Promise(resolve => {
-        mainContent.style.opacity = '0';
-        mainContent.style.transition = 'opacity 0.5s ease';
+        if (mainContent) {
+            mainContent.style.opacity = '0';
+            mainContent.style.transition = 'opacity 0.5s ease';
+        }
         setTimeout(resolve, 500);
     });
 }
 
 function fadeInContent() {
     return new Promise(resolve => {
-        mainContent.style.opacity = '1';
-        mainContent.style.transition = 'opacity 0.5s ease';
+        if (mainContent) {
+            mainContent.style.opacity = '1';
+            mainContent.style.transition = 'opacity 0.5s ease';
+        }
         setTimeout(resolve, 500);
     });
 }
 
 function showLoadingOverlay() {
     return new Promise(resolve => {
-        loadingOverlay.style.display = 'flex';
-        loadingOverlay.style.opacity = '1';
-        loadingOverlay.style.visibility = 'visible';
-        loadingOverlay.style.animation = 'none';
-        
-        setTimeout(resolve, 1500); 
+        const loadingOverlay = document.querySelector('.loading-overlay');
+        loadingOverlay.classList.add('show');
+        setTimeout(resolve, 1500);
     });
 }
 
 function hideLoadingOverlay() {
     return new Promise(resolve => {
-        loadingOverlay.style.animation = 'fadeOut 0.5s ease-in-out forwards';
-        
+        const loadingOverlay = document.querySelector('.loading-overlay');
+        loadingOverlay.classList.add('hide');
         setTimeout(() => {
-            loadingOverlay.style.display = 'none';
+            loadingOverlay.classList.remove('show', 'hide');
             resolve();
         }, 500);
     });
@@ -280,7 +377,6 @@ async function switchTheme(e) {
     e.preventDefault();
     
     if (isThemeSwitching) return;
-
     isThemeSwitching = true;
     toggleSwitch.disabled = true;
     
@@ -288,9 +384,8 @@ async function switchTheme(e) {
     
     try {
         await fadeOutContent();
-        
         await showLoadingOverlay();
-        
+ 
         if (isLightMode) {
             particlesContainer.style.opacity = '0';
             
@@ -332,18 +427,17 @@ async function switchTheme(e) {
         
         setTimeout(async () => {
             await hideLoadingOverlay();
-            
             await fadeInContent();
             
             toggleSwitch.checked = isLightMode;
-            
             isThemeSwitching = false;
             toggleSwitch.disabled = false;
         }, 500);
         
     } catch (error) {
         console.error('Error during theme switch:', error);
-        loadingOverlay.style.display = 'none';
+        const loadingOverlay = document.querySelector('.loading-overlay');
+        loadingOverlay.classList.remove('show', 'hide');
         mainContent.style.opacity = '1';
         isThemeSwitching = false;
         toggleSwitch.disabled = false;
@@ -352,7 +446,21 @@ async function switchTheme(e) {
 
 toggleSwitch.addEventListener('change', switchTheme);
 
-document.addEventListener('DOMContentLoaded', () => {
+// Initial page load
+document.addEventListener('DOMContentLoaded', async () => {
+    const loadingOverlay = document.querySelector('.loading-overlay');
+    const hasVisitedBefore = localStorage.getItem('hasVisited');
+    
+    // Only show loading overlay if this is the first visit to the website
+    if (!hasVisitedBefore) {
+        loadingOverlay.classList.add('show');
+        localStorage.setItem('hasVisited', 'true');
+        
+        // Wait for initial animations and loading
+        await new Promise(resolve => setTimeout(resolve, 2000));
+        await hideLoadingOverlay();
+    }
+
     const currentTheme = localStorage.getItem('theme');
     if (currentTheme) {
         document.documentElement.setAttribute('data-theme', currentTheme);
@@ -363,6 +471,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     }
+    
     mainContent.style.opacity = '1';
 });
 

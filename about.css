@@ -1,0 +1,220 @@
+.about-container {
+    padding: 2rem;
+    margin-top: 2rem;
+    width: 100%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.about-section {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    margin-bottom: 2rem;
+}
+
+.about-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.about-header h1 {
+    font-size: 2.5rem;
+    color: var(--text-color);
+    margin: 0;
+    padding-bottom: 1rem;
+    position: relative;
+}
+
+.about-header h1::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+}
+
+.about-content {
+    display: grid;
+    grid-template-areas: 
+        "profile info"
+        "interests interests";
+    gap: 2rem;
+    padding: 1rem;
+}
+
+.profile-card {
+    grid-area: profile;
+    background: rgba(204, 207, 255, 0.3);
+    border-radius: 15px;
+    padding: 2rem;
+    text-align: center;
+    transition: transform 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    width: 300px;
+}
+
+.profile-card:hover {
+    transform: translateY(-5px);
+}
+
+.profile-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+    border: 3px solid var(--accent-color);
+    padding: 3px;
+}
+
+.profile-card h2 {
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+}
+
+.profile-card .title {
+    color: var(--accent-color);
+    font-style: italic;
+}
+
+.info-card {
+    grid-area: info;
+    background: rgba(204, 207, 255, 0.3);
+    border-radius: 15px;
+    padding: 2rem;
+    text-align: center;
+    transition: transform 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.info-card:hover {
+    transform: translateY(-5px);
+}
+
+.info-card h3 {
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    position: relative;
+    display: inline-block;
+}
+
+.info-card h3::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--accent-color);
+}
+
+.info-card p {
+    color: var(--text-color);
+    line-height: 1.6;
+    text-align: justify;
+}
+
+.interests-card {
+    grid-area: interests;
+    background: rgba(204, 207, 255, 0.3);
+    border-radius: 15px;
+    padding: 2rem;
+    text-align: center;
+    transition: transform 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.interests-card:hover {
+    transform: translateY(-5px);
+}
+
+.interests-card h3 {
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    position: relative;
+    display: inline-block;
+}
+
+.interests-card h3::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--accent-color);
+}
+
+.interests-card ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1rem;
+}
+
+.interests-card li {
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 0.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.interests-card li:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: scale(1.05);
+}
+
+.interests-card i {
+    color: var(--accent-color);
+}
+
+/* Dark mode specific styles */
+[data-theme="dark"] .about-section {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="dark"] .profile-card,
+[data-theme="dark"] .info-card,
+[data-theme="dark"] .interests-card {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .about-container {
+        padding: 1rem;
+    }
+    
+    .about-content {
+        grid-template-areas: 
+            "profile"
+            "info"
+            "interests";
+    }
+    
+    .profile-card {
+        width: 100%;
+    }
+    
+    .about-header h1 {
+        font-size: 2rem;
+    }
+    
+    .profile-image {
+        width: 120px;
+        height: 120px;
+    }
+} 
