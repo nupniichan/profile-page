@@ -132,9 +132,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 3000);
     }
 
-    // Sidebar Toggle
+    // Sidebar Toggle with improved mobile handling
     const sidebarToggle = document.querySelector('.sidebar-toggle');
     const sidebar = document.querySelector('.sidebar');
+    const main = document.querySelector('main');
 
     if (sidebarToggle && sidebar) {
         function toggleSidebar(open) {
@@ -145,12 +146,40 @@ document.addEventListener('DOMContentLoaded', () => {
                 sidebar.classList.add('active');
                 sidebarToggle.querySelector('i').classList.remove('fa-bars');
                 sidebarToggle.querySelector('i').classList.add('fa-times');
+                if (window.innerWidth <= 768) {
+                    document.body.style.overflow = 'hidden';
+                }
             } else {
                 sidebar.classList.remove('active');
                 sidebarToggle.querySelector('i').classList.remove('fa-times');
                 sidebarToggle.querySelector('i').classList.add('fa-bars');
+                document.body.style.overflow = '';
             }
         }
+
+        // Close sidebar on mobile when clicking a link
+        const sidebarLinks = document.querySelectorAll('.sidebar-nav a');
+        sidebarLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    toggleSidebar(false);
+                }
+            });
+        });
+
+        // Handle window resize
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                if (window.innerWidth > 768) {
+                    document.body.style.overflow = '';
+                    if (!isSidebarOpen) {
+                        sidebar.style.transform = 'translateX(-250px)';
+                    }
+                }
+            }, 250);
+        });
 
         // Set initial sidebar state
         const hasVisitedBefore = localStorage.getItem('hasVisited');
@@ -225,28 +254,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        function hideProgressBar() {
-            if (isMobile()) {
-                progressContainer.style.opacity = '0';
-                progressContainer.style.transform = 'scaleX(0)';
-                progressContainer.style.width = '0';
-                setTimeout(() => {
-                    if (!isPlaying && isMobile()) {
-                        progressContainer.style.display = 'none';
-                    }
-                }, 300);
-            }
-        }
-
-        function showProgressBar() {
-            progressContainer.style.display = 'block';
-            setTimeout(() => {
-                progressContainer.style.opacity = '1';
-                progressContainer.style.transform = 'scaleX(1)';
-                progressContainer.style.width = isMobile() ? '90px' : '100px';
-            }, 10);
-        }
-
         audioButton.addEventListener('click', (e) => {
             e.stopPropagation();
             
@@ -254,17 +261,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 bgMusic.pause();
                 audioButton.innerHTML = '<i class="fas fa-play"></i>';
                 audioButton.classList.remove('playing');
-                
-                if (isMobile()) {
-                    hideProgressBar();
-                }
             } else {
                 bgMusic.play();
                 audioButton.innerHTML = '<i class="fas fa-pause"></i>';
                 audioButton.classList.add('playing');
-                
-                showProgressBar();
-                
                 requestAnimationFrame(updateProgressBar);
             }
             isPlaying = !isPlaying;
@@ -272,22 +272,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         window.addEventListener('resize', () => {
             const mobile = isMobile();
-            
-            if (isPlaying) {
-                progressContainer.style.width = mobile ? '90px' : '100px';
-            } else if (mobile) {
-                hideProgressBar();
+            if (mobile) {
+                progressContainer.style.width = '90px';
             } else {
-                progressContainer.style.display = 'block';
-                progressContainer.style.opacity = '0';
-                progressContainer.style.transform = 'scaleX(0)';
                 progressContainer.style.width = '100px';
             }
         });
-
-        if (!isPlaying && isMobile()) {
-            hideProgressBar();
-        }
 
         progressContainer.addEventListener('click', function(e) {
             e.stopPropagation();
@@ -299,7 +289,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 const seekTime = percentageClicked * bgMusic.duration;
                 
                 bgMusic.currentTime = seekTime;
-                
                 musicProgress.style.width = (percentageClicked * 100) + '%';
             }
         });
@@ -525,3 +514,4 @@ document.addEventListener('DOMContentLoaded', () => {
         link.style.setProperty('--order', index + 1);
     });
 });
+

@@ -19,7 +19,7 @@
 
 .about-header {
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 0.5rem;
 }
 
 .about-header h1 {
@@ -51,19 +51,23 @@
     grid-template-areas: 
         "profile info"
         "interests interests";
+    grid-template-columns: auto 1fr;
     gap: 2rem;
     padding: 1rem;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .profile-card {
     grid-area: profile;
     background: rgba(204, 207, 255, 0.3);
     border-radius: 15px;
-    padding: 2rem;
+    padding: 3rem;
     text-align: center;
     transition: transform 0.3s ease;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    width: 300px;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 .profile-card:hover {
@@ -107,6 +111,8 @@
     text-align: center;
     transition: transform 0.3s ease;
     border: 1px solid rgba(255, 255, 255, 0.1);
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .info-card:hover {
@@ -158,6 +164,8 @@
     text-align: center;
     transition: transform 0.3s ease;
     border: 1px solid rgba(255, 255, 255, 0.1);
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .interests-card:hover {

@@ -48,7 +48,8 @@
     .audio-player {
         position: fixed;
         bottom: 20px;
-        left: 15px;
+        left: 50%;
+        transform: translateX(-50%);
         flex-direction: row;
         gap: 10px;
         padding: 8px 12px;
@@ -57,21 +58,21 @@
         max-width: 180px;
         display: flex;
         align-items: center;
+        z-index: 1002;
     }
     
     .progress-container {
         position: relative;
-        width: 0;
+        width: 90px;
         height: 5px;
         margin: 0;
         padding: 0;
         border-radius: 3px;
         background: rgba(0, 0, 0, 0.3);
-        opacity: 0;
-        transform: scaleX(0);
-        transform-origin: left;
-        transition: width 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+        opacity: 1;
+        transform: scaleX(1);
         border: 1px solid rgba(204, 204, 255, 0.15);
+        display: block;
     }
     
     .progress-bar {
@@ -80,6 +81,7 @@
         background: linear-gradient(90deg, #CCCCFF, #7070f5);
         box-shadow: 0 0 8px rgba(204, 204, 255, 0.5);
         border-radius: 2px;
+        transition: width 0.1s linear;
     }
 
     #audioButton {
@@ -97,35 +99,273 @@
 /* Tablet and Small Desktop Styles */
 @media (max-width: 768px) {
     .sidebar {
-        width: 200px;
-        transform: translateX(-170px);
+        width: 280px;
+        transform: translateX(-280px);
+        z-index: 1000;
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        overflow-y: auto;
+        background: rgba(0, 0, 0, 0.85);
+        backdrop-filter: blur(10px);
+        transition: transform 0.3s ease;
+        padding: 1rem;
+        box-sizing: border-box;
+    }
+    
+    .sidebar.active {
+        transform: translateX(0);
+    }
+
+    .sidebar-nav {
+        padding: 0.5rem;
+        margin-top: 2rem;
     }
     
     .sidebar-nav ul li a {
-        padding: 8px 20px;
-        font-size: 0.9rem;
+        padding: 12px 20px;
+        font-size: 1rem;
+        border-radius: 8px;
+        transition: background 0.3s ease;
+    }
+
+    .sidebar-nav ul li a:hover {
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    .sidebar-header {
+        padding: 1rem 0.5rem;
+        margin-top: 2.5rem;
+        text-align: center;
+    }
+
+    .sidebar-header img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        margin-bottom: 1rem;
     }
     
     main {
-        padding-left: 30px;
+        padding-left: 0;
+        width: 100%;
+        margin-left: 0;
     }
     
     .section {
         width: 90%;
+    }
+
+    .sidebar .audio-player {
+        position: relative;
+        bottom: auto;
+        left: auto;
+        transform: none;
+        margin: 0.5rem auto;
+        width: 80%;
+        max-width: none;
+    }
+
+    .sidebar-footer {
+        padding: 1rem 0.5rem;
+        position: relative;
+        bottom: 0;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .theme-switch-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin: 1rem 0;
+        padding: 0.5rem;
+    }
+
+    .theme-switch-wrapper span {
+        font-size: 0.9rem;
+    }
+
+    .social-icons {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        padding: 0;
+        margin: 0;
+    }
+
+    .social-icons a {
+        font-size: 1.2rem;
+        color: var(--text-color);
+        transition: color 0.3s ease;
+        padding: 0;
+    }
+
+    .social-icons a:hover {
+        color: var(--accent-color);
     }
 }
 
 /* Small Mobile Styles */
 @media (max-width: 480px) {
     .sidebar {
-        transform: translateX(-200px);
+        width: 100%;
+        transform: translateX(-100%);
     }
     
-    .sidebar:hover {
+    .sidebar.active {
         transform: translateX(0);
     }
     
+    .sidebar-toggle {
+        top: 0.5rem;
+        left: 0.5rem;
+        padding: 0.8rem;
+    }
+
+    .audio-player {
+        bottom: 10px;
+        padding: 6px 10px;
+    }
+
+    #audioButton {
+        width: 28px;
+        height: 28px;
+    }
+
+    .progress-container {
+        width: 60px;
+    }
+
+    .theme-switch-wrapper {
+        justify-content: center;
+    }
+}
+
+/* About Page Responsive Styles */
+@media (max-width: 1024px) {
+    .about-container {
+        padding: 1rem;
+        margin-top: 1rem;
+        width: auto;
+        max-width: 100%;
+    }
+
+    .about-content {
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+            "profile"
+            "info"
+            "interests";
+        gap: 1.5rem;
+    }
+
+    .profile-card {
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    .info-card,
+    .interests-card {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 250px;
+        transform: translateX(-250px);
+        z-index: 1000;
+    }
+
+    .sidebar.active {
+        transform: translateX(0);
+    }
+
+    .sidebar-toggle {
+        display: flex;
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        z-index: 1001;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        padding: 0.5rem;
+        border-radius: 5px;
+        cursor: pointer;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
     main {
         padding-left: 0;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .about-section {
+        padding: 1.5rem;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .about-header h1 {
+        font-size: 1.5rem;
+    }
+
+    .interests-card ul {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        gap: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-container {
+        padding: 0.5rem;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .about-section {
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .about-header h1 {
+        font-size: 1.2rem;
+    }
+
+    .profile-image {
+        width: 120px;
+        height: 120px;
+    }
+
+    .profile-card h2 {
+        font-size: 1.2rem;
+    }
+
+    .info-card p {
+        font-size: 0.9rem;
+        padding: 0 0.5rem;
+    }
+
+    .interests-card ul {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .interests-card li {
+        font-size: 0.9rem;
+        padding: 0.4rem;
+    }
+}
+
+/* Dark mode adjustments for mobile */
+@media (max-width: 768px) {
+    [data-theme="dark"] .sidebar-toggle {
+        background: rgba(0, 0, 0, 0.3);
+        border: 1px solid rgba(255, 255, 255, 0.05);
     }
 } 
