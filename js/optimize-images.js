@@ -2,6 +2,8 @@
   Image Optimization
   - Lazy load images that are not critical
 */
+
+// Function to initialize image optimization
 export function initImageOptimization() {
   const lazyImages = document.querySelectorAll('img:not(.critical)');
   
