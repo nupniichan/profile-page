@@ -8,7 +8,7 @@ let isSidebarOpen = false;
 
 // Function to initialize sidebar
 export function initSidebar() {
-  isSidebarOpen = localStorage.getItem('sidebarOpen') === 'true';
+  isSidebarOpen = sessionStorage.getItem('sidebarOpen') === 'true';
   
   const sidebarToggle = document.querySelector('.sidebar-toggle');
   const sidebar = document.querySelector('.sidebar');
@@ -19,7 +19,7 @@ export function initSidebar() {
   // Function to toggle sidebar
   function toggleSidebar(open) {
     isSidebarOpen = open;
-    localStorage.setItem('sidebarOpen', open);
+    sessionStorage.setItem('sidebarOpen', open);
     
     if (open) {
       sidebar.classList.add('active');
@@ -58,7 +58,7 @@ export function initSidebar() {
     }, 250);
   });
 
-  const hasVisitedBefore = localStorage.getItem('hasVisited');
+  const hasVisitedBefore = sessionStorage.getItem('hasVisited');
   if (hasVisitedBefore && isSidebarOpen) {
     toggleSidebar(true);
   } else {

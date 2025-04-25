@@ -15,8 +15,8 @@ export function initThemeSwitch() {
 
   toggleSwitch.addEventListener('change', switchTheme);
 
-  // Get current theme from localStorage
-  const currentTheme = localStorage.getItem('theme');
+  // Get current theme from sessionStorage
+  const currentTheme = sessionStorage.getItem('theme');
   if (currentTheme) {
     document.documentElement.setAttribute('data-theme', currentTheme);
     if (currentTheme === 'light') {
@@ -24,6 +24,14 @@ export function initThemeSwitch() {
       if (window.pJSDom && window.pJSDom[0]) {
         window.pJSDom[0].pJS.particles.move.enable = false;
       }
+    }
+  } else {
+    // Set default theme to light if no theme is stored
+    document.documentElement.setAttribute('data-theme', 'light');
+    toggleSwitch.checked = true;
+    sessionStorage.setItem('theme', 'light');
+    if (window.pJSDom && window.pJSDom[0]) {
+      window.pJSDom[0].pJS.particles.move.enable = false;
     }
   }
 
@@ -70,7 +78,7 @@ export function initThemeSwitch() {
     });
   }
   
-  // Function called to switch theme and store in localStorage
+  // Function called to switch theme and store in sessionStorage
   async function switchTheme(e) {
     e.preventDefault();
     
@@ -94,7 +102,7 @@ export function initThemeSwitch() {
         }
         
         document.documentElement.setAttribute('data-theme', 'light');
-        localStorage.setItem('theme', 'light');
+        sessionStorage.setItem('theme', 'light');
         
         try {
           await Promise.race([
@@ -112,7 +120,7 @@ export function initThemeSwitch() {
         }
       } else {
         document.documentElement.setAttribute('data-theme', 'dark');
-        localStorage.setItem('theme', 'dark');
+        sessionStorage.setItem('theme', 'dark');
         
         if (window.pJSDom && window.pJSDom[0]) {
           window.pJSDom[0].pJS.particles.move.enable = true;

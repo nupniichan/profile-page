@@ -57,9 +57,9 @@ function setupAudioElements() {
 }
 
 function loadAudioState() {
-  const isPlaying = localStorage.getItem(AUDIO_IS_PLAYING) === 'true';
-  const currentTime = parseFloat(localStorage.getItem(AUDIO_CURRENT_TIME) || '0');
-  const volume = parseFloat(localStorage.getItem(AUDIO_VOLUME) || '1');
+  const isPlaying = sessionStorage.getItem(AUDIO_IS_PLAYING) === 'true';
+  const currentTime = parseFloat(sessionStorage.getItem(AUDIO_CURRENT_TIME) || '0');
+  const volume = parseFloat(sessionStorage.getItem(AUDIO_VOLUME) || '1');
   
   console.log('[Persistent Audio] Đang tải trạng thái:', { isPlaying, currentTime, volume });
   
@@ -82,9 +82,9 @@ function saveAudioState() {
   if (!audioPlayer) return;
   
   const isPlaying = !audioPlayer.paused;
-  localStorage.setItem(AUDIO_IS_PLAYING, isPlaying.toString());
-  localStorage.setItem(AUDIO_CURRENT_TIME, audioPlayer.currentTime.toString());
-  localStorage.setItem(AUDIO_VOLUME, audioPlayer.volume.toString());
+  sessionStorage.setItem(AUDIO_IS_PLAYING, isPlaying.toString());
+  sessionStorage.setItem(AUDIO_CURRENT_TIME, audioPlayer.currentTime.toString());
+  sessionStorage.setItem(AUDIO_VOLUME, audioPlayer.volume.toString());
   
 }
 

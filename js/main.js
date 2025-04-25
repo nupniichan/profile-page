@@ -20,18 +20,18 @@ document.addEventListener('DOMContentLoaded', async () => {
   
   // Initialize sidebar
   initSidebar();
-  // Initialize persistent audio player with localStorage
+  // Initialize persistent audio player with sessionStorage
   initPersistentAudio();
   highlightActiveSection();
   initThemeSwitch();
   initModal();
   
   const loadingOverlay = document.querySelector('.loading-overlay');
-  const hasVisitedBefore = localStorage.getItem('hasVisited');
+  const hasVisitedBefore = sessionStorage.getItem('hasVisited');
   
   if (!hasVisitedBefore) {
     loadingOverlay.classList.add('show');
-    localStorage.setItem('hasVisited', 'true');
+    sessionStorage.setItem('hasVisited', 'true');
     
     await new Promise(resolve => setTimeout(resolve, 2000));
     
