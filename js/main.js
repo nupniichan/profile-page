@@ -1,4 +1,3 @@
-
 /*
   Main Script
   - Initialize essential components and features
@@ -6,10 +5,11 @@
 */
 
 // Import necessary modules
-import { initSidebar, initAudioPlayer, highlightActiveSection } from './sidebar.js';
+import { initSidebar, highlightActiveSection } from './sidebar.js';
 import { initThemeSwitch } from './theme.js';
 import { initModal } from './modal.js';
 import { optimizeAvatarGif } from './optimize-images.js';
+import { initPersistentAudio } from './persistent-audio.js';
 
 // Initialize reset functions
 const resetFunctions = {}; 
@@ -20,7 +20,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   
   // Initialize sidebar
   initSidebar();
-  initAudioPlayer();
+  // Initialize persistent audio player with localStorage
+  initPersistentAudio();
   highlightActiveSection();
   initThemeSwitch();
   initModal();
