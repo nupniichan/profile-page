@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Contact - nupniichan</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
@@ -82,99 +82,162 @@
 
     <main>
         <div class="contact-container">
-            <div class="section-header">
-                <h1>Liên Hệ</h1>
-            </div>
-
-            <div class="contact-content">
-                <!-- Contact Information -->
-                <div class="contact-info">
-                    <div class="info-card">
-                        <div class="info-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div class="info-details">
-                            <h3>Email</h3>
-                            <p>your.email@example.com</p>
-                        </div>
-                    </div>
-
-                    <div class="info-card">
-                        <div class="info-icon">
-                            <i class="fas fa-phone"></i>
-                        </div>
-                        <div class="info-details">
-                            <h3>Phone</h3>
-                            <p>+84 123 456 789</p>
+            <div class="contact-content" data-aos="fade-up">
+                <div class="welcome-text">
+                    <h2><i class="fas fa-paper-plane glow-icon"></i> Liên Hệ <span class="emoji">ヽ(・∀・)ﾉ</span></h2>
+                    <p>Cảm ơn bạn đã ghé thăm trang web của mình. Nếu bạn muốn liên hệ, hãy sử dụng các thông tin bên dưới nhé!</p>
+                </div>
+                
+                <div class="contact-cards">
+                    <div class="info-card large-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="card-inner" style="align-items: center; text-align: center;">
+                            <div class="info-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="info-details" style="text-align: center;">
+                                <h3>Email</h3>
+                                <p>bao96065@gmail.com</p>
+                                <a href="mailto:bao96065@gmail.com" class="contact-link" style="justify-content: center;">
+                                    <i class="fas fa-arrow-right"></i> Gửi email cho mình
+                                </a>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="info-card">
-                        <div class="info-icon">
-                            <i class="fas fa-map-marker-alt"></i>
+                    <div class="info-card large-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="card-inner" style="align-items: center; text-align: center;">
+                            <div class="info-icon">
+                                <i class="fab fa-telegram"></i>
+                            </div>
+                            <div class="info-details" style="text-align: center;">
+                                <h3>Telegram / Zalo</h3>
+                                <p>Kết nối với mình qua mã QR</p>
+                                <div class="social-buttons">
+                                    <button class="contact-link qr-button" data-platform="telegram">
+                                        <i class="fab fa-telegram"></i> Telegram
+                                    </button>
+                                    <button class="contact-link qr-button" data-platform="zalo">
+                                        <i class="fas fa-comment"></i> Zalo
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                        <div class="info-details">
-                            <h3>Location</h3>
-                            <p>Ho Chi Minh City, Vietnam</p>
-                        </div>
-                    </div>
-
-                    <div class="social-links">
-                        <a href="#" class="social-link">
-                            <i class="fab fa-facebook"></i>
-                        </a>
-                        <a href="#" class="social-link">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="#" class="social-link">
-                            <i class="fab fa-linkedin"></i>
-                        </a>
-                        <a href="#" class="social-link">
-                            <i class="fab fa-instagram"></i>
-                        </a>
                     </div>
                 </div>
 
-                <!-- Contact Form -->
-                <div class="contact-form">
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <label for="name">Họ và tên</label>
-                            <input type="text" id="name" name="name" required>
+                <div class="contact-cards single-column">
+                    <div class="info-card large-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="card-inner" style="align-items: center; text-align: center;">
+                            <div class="info-icon">
+                                <i class="fas fa-home"></i>
+                            </div>
+                            <div class="info-details" style="text-align: center;">
+                                <h3>Quay về trang chủ</h3>
+                                <p>Xem thêm thông tin về các trang mạng xã hội của mình</p>
+                                <a href="index.html" class="contact-link" style="justify-content: center;">
+                                    <i class="fas fa-arrow-right"></i> Về trang chủ
+                                </a>
+                            </div>
                         </div>
-
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="subject">Chủ đề</label>
-                            <input type="text" id="subject" name="subject" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="message">Tin nhắn</label>
-                            <textarea id="message" name="message" rows="5" required></textarea>
-                        </div>
-
-                        <button type="submit" class="submit-btn">
-                            <i class="fas fa-paper-plane"></i>
-                            Gửi tin nhắn
-                        </button>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="footer">@2025 - Quốc Bảo (nupniichan)</div>
     </main>
 
+    <!-- QR Code Modal -->
+    <div id="qrModal" class="qr-modal">
+        <div class="qr-modal-content">
+            <span class="qr-close">&times;</span>
+            <h3 id="qrTitle">Quét mã QR</h3>
+            <div class="qr-image-container">
+                <img id="qrImage" src="" alt="QR Code">
+            </div>
+        </div>
+    </div>
+
+    <!-- AOS Animation -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script>
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            // Add your form submission logic here
-            alert('Thank you for your message! I will get back to you soon.');
-            this.reset();
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init({
+                duration: 800,
+                easing: 'ease-in-out',
+                once: true,
+                disable: window.innerWidth < 480 // Tắt animation trên thiết bị quá nhỏ để tránh vấn đề hiệu suất
+            });
+        });
+    </script>
+    
+    <!-- QR Code Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // QR Code functionality
+            const modal = document.getElementById('qrModal');
+            const qrImage = document.getElementById('qrImage');
+            const qrTitle = document.getElementById('qrTitle');
+            const closeBtn = document.querySelector('.qr-close');
+            const qrButtons = document.querySelectorAll('.qr-button');
+            
+            // QR Code images
+            const qrCodes = {
+                telegram: 'Assets/Image/telegram-qr.jpg',
+                zalo: 'Assets/Image/zalo-qr.jpg'
+            };
+            
+            // Open modal with appropriate QR code
+            qrButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const platform = this.getAttribute('data-platform');
+                    
+                    // Preload image for smoother display
+                    const img = new Image();
+                    img.onload = function() {
+                        qrImage.src = qrCodes[platform];
+                        qrTitle.textContent = platform === 'telegram' ? 'Telegram QR Code' : 'Zalo QR Code';
+                        modal.style.display = 'block';
+                        
+                        // Add body class to prevent scrolling
+                        document.body.classList.add('modal-open');
+                        
+                        // Add animation class
+                        setTimeout(() => {
+                            qrImage.classList.add('qr-image-visible');
+                        }, 100);
+                    };
+                    img.src = qrCodes[platform];
+                });
+            });
+            
+            // Close modal
+            closeBtn.addEventListener('click', closeModal);
+            
+            // Close modal when clicking outside
+            window.addEventListener('click', function(event) {
+                if (event.target === modal) {
+                    closeModal();
+                }
+            });
+            
+            // Close modal with Escape key
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape' && modal.style.display === 'block') {
+                    closeModal();
+                }
+            });
+            
+            function closeModal() {
+                // Add closing animation
+                qrImage.classList.remove('qr-image-visible');
+                
+                // Delay closing to allow for animation
+                setTimeout(() => {
+                    modal.style.display = 'none';
+                    document.body.classList.remove('modal-open');
+                }, 200);
+            }
         });
     </script>
 </body>

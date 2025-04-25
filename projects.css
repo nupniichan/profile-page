@@ -9,11 +9,11 @@
 
 .section-header {
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 1rem;
 }
 
 .section-header h1 {
-    font-size: 2.5rem;
+    font-size: 2rem;
     color: var(--text-color);
     margin: 0;
     padding-bottom: 1rem;
@@ -29,6 +29,12 @@
     width: 100px;
     height: 3px;
     background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+}
+
+.section-header p {
+    color: var(--text-color);
+    margin-top: 1rem;
+    font-size: 1rem;
 }
 
 /* Skills Section */
@@ -117,17 +123,18 @@
 
 /* Projects Section */
 .projects-section {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(10px);
     border-radius: 20px;
     padding: 2rem;
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
     border: 1px solid rgba(255, 255, 255, 0.18);
+    margin-bottom: 2rem;
 }
 
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
     padding: 1rem;
 }
@@ -136,11 +143,17 @@
     background: rgba(255, 255, 255, 0.05);
     border-radius: 15px;
     overflow: hidden;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .project-card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .project-image {
@@ -162,17 +175,29 @@
 
 .project-info {
     padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .project-info h3 {
     color: var(--text-color);
     margin-bottom: 0.5rem;
+    font-size: 1.4rem;
+    line-height: ;
+}
+
+.project-info h3 i {
+    margin-right: 10px;
+    color: var(--accent-color);
 }
 
 .project-info p {
     color: var(--text-color);
     font-size: 0.9rem;
     margin-bottom: 1rem;
+    flex-grow: 1;
+    line-height: 1.5;
 }
 
 .project-tags {
@@ -199,13 +224,13 @@
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.5rem 1rem;
     background: var(--accent-color);
     color: white;
     text-decoration: none;
     border-radius: 5px;
     font-size: 0.9rem;
     transition: transform 0.3s ease;
+    margin-top: 10px;
 }
 
 .btn:hover {
@@ -215,15 +240,43 @@
 /* Dark mode specific styles */
 [data-theme="dark"] .skills-section,
 [data-theme="dark"] .projects-section {
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(20, 20, 30, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 [data-theme="dark"] .skill-category,
 [data-theme="dark"] .project-card {
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(40, 40, 50, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .project-tags span {
+    background: rgba(60, 60, 60, 0.5);
+    color: var(--accent-color);
+}
+
+[data-theme="dark"] .btn {
+    background: var(--accent-color);
+    color: #ffffff;
 }
 
 /* Responsive adjustments */
+@media (max-width: 1024px) {
+    .projects-container {
+        padding: 1.5rem;
+    }
+    
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+    
+    .section-header h1 {
+        font-size: 2.2rem;
+    }
+}
+
 @media (max-width: 768px) {
     .projects-container {
         padding: 1rem;
@@ -235,9 +288,40 @@
     
     .projects-grid {
         grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .project-card {
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
     }
     
     .skill-category {
         padding: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .section-header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .project-info h3 {
+        font-size: 1.2rem;
+    }
+    
+    .project-info p {
+        font-size: 0.85rem;
+        text-align: justify;
+    }
+    
+    .project-tags span {
+        font-size: 0.7rem;
+    }
+    
+    .btn {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.8rem;
     }
 } 

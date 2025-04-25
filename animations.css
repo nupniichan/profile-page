@@ -60,4 +60,25 @@
 @keyframes scaleUp {
     from {transform: scale(0.7);}
     to {transform: scale(1);}
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+/* Animation utility classes */
+.glow-icon {
+    filter: drop-shadow(0 0 8px rgba(110, 66, 255, 0.6));
+}
+
+.emoji {
+    display: inline-block;
+    animation: bounce 2s ease infinite;
+}
+
+.timeline-date {
+    z-index: 5;
+    white-space: nowrap;
+    transition: all 0.3s ease;
 } 

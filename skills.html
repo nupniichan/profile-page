@@ -1,3 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Skills - nupniichan</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script type="module" defer src="main.js"></script>
+
+    <link rel="stylesheet" href="animations.css" />
+    <link rel="stylesheet" href="main.css" />
+    <link rel="stylesheet" href="skills.css" />
+    <link rel="stylesheet" href="responsive.css" />
+    
+    <style>
+        /* Override styles to match about.html particles display */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            opacity: 1;
+            transition: opacity 0.8s ease;
+        }
+        
+        .skills-content {
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            z-index: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="particles-js"></div>
+    <div class="theme-transition-overlay"></div>
+    
+    <!-- Sidebar Toggle Button -->
+    <div class="sidebar-toggle">
+        <i class="fas fa-bars"></i>
+    </div>
+    
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <img src="Assets/Image/avatar2.png" alt="Profile Picture" class="sidebar-avatar">
+            <h3>Quốc Bảo</h3>
+            <p>@nupniichan</p>
+        </div>
+
+        <nav class="sidebar-nav">
+            <ul>
+                <li><a href="index.html"><i class="fas fa-home"></i> Trang chủ</a></li>
+                <li><a href="about.html"><i class="fas fa-user"></i> Giới thiệu</a></li>
+                <li><a href="skills.html" class="active"><i class="fas fa-code"></i> Kỹ năng</a></li>
+                <li><a href="projects.html"><i class="fas fa-project-diagram"></i> Dự án</a></li>
+                <li><a href="education.html"><i class="fas fa-graduation-cap"></i> Học vấn</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> Liên hệ</a></li>
+            </ul>
+        </nav>
+
+        <div class="sidebar-footer">
+            <!-- Theme Switch -->
+            <div class="theme-switch-wrapper">
+                <label class="theme-switch">
+                    <input type="checkbox" id="checkbox">
+                    <div class="slider round"></div>
+                </label>
+                <span>Chế độ sáng / tối</span>
+            </div>
+
+            <!-- Audio Player -->
+            <div class="audio-player">
+                <button id="audioButton">
+                    <i class="fas fa-play"></i>
+                </button>
+                <div class="progress-container">
+                    <div class="progress-bar" id="musicProgress"></div>
+                </div>
+                <audio id="bgMusic" loop>
+                    <source src="Assets/Music/Hanayamata-opening.webm" type="audio/mp3" volume="0.5">
+                </audio>
+            </div>
+
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </div>
+
     <div class="loading-overlay">
         <div class="loader"></div>
         <div class="loading-text">Chờ xíu nha ( •̀ ω •́ )✧</div>
@@ -5,13 +102,285 @@
 
     <main>
         <div class="skills-container">
-            <div class="section-header">
-                <h1>Kỹ Năng</h1>
+            <div class="skills-content" data-aos="fade-up">
+                <div class="welcome-text">
+                    <h2><i class="fas fa-code glow-icon"></i> Kỹ Năng <span class="emoji">ʕ•́ᴥ•̀ʔっ♡</span></h2>
+                    <p>Các kỹ năng và công nghệ mà mình đã học được trong quá trình phát triển</p>
+                </div>
+                
+                <!-- Main Skills Section -->
+                <section class="skills-section">
+                    <h2 class="section-title" data-aos="fade-up"><i class="fas fa-laptop-code"></i> Kỹ Năng Lập Trình</h2>
+                    
+                    <div class="skills-grid">
+                        <!-- Frontend -->
+                        <div class="skill-category" data-aos="fade-up" data-aos-delay="100">
+                            <h3 class="category-title"><i class="fas fa-paint-brush"></i> Frontend</h3>
+                            
+                            <div class="skill-items">
+                                <div class="skill-item">
+                                    <div class="skill-info">
+                                        <span class="skill-name">HTML5 & CSS3</span>
+                                        <span class="skill-percentage">70%</span>
+                                    </div>
+                                    <div class="skill-bar">
+                                        <div class="skill-progress" style="width: 70%;"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="skill-item">
+                                    <div class="skill-info">
+                                        <span class="skill-name">JavaScript</span>
+                                        <span class="skill-percentage">50%</span>
+                                    </div>
+                                    <div class="skill-bar">
+                                        <div class="skill-progress" style="width: 50%;"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="skill-item">
+                                    <div class="skill-info">
+                                        <span class="skill-name">React.js</span>
+                                        <span class="skill-percentage">70%</span>
+                                    </div>
+                                    <div class="skill-bar">
+                                        <div class="skill-progress" style="width: 70%;"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="skill-item">
+                                    <div class="skill-info">
+                                        <span class="skill-name">Tailwind CSS</span>
+                                        <span class="skill-percentage">85%</span>
+                                    </div>
+                                    <div class="skill-bar">
+                                        <div class="skill-progress" style="width: 85%;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Backend -->
+                        <div class="skill-category" data-aos="fade-up" data-aos-delay="200">
+                            <h3 class="category-title"><i class="fas fa-server"></i> Backend</h3>
+                            
+                            <div class="skill-items">
+                                <div class="skill-item">
+                                    <div class="skill-info">
+                                        <span class="skill-name">C#</span>
+                                        <span class="skill-percentage">90%</span>
+                                    </div>
+                                    <div class="skill-bar">
+                                        <div class="skill-progress" style="width: 90%;"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="skill-item">
+                                    <div class="skill-info">
+                                        <span class="skill-name">Node.js</span>
+                                        <span class="skill-percentage">55%</span>
+                                    </div>
+                                    <div class="skill-bar">
+                                        <div class="skill-progress" style="width: 55%;"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="skill-item">
+                                    <div class="skill-info">
+                                        <span class="skill-name">Python</span>
+                                        <span class="skill-percentage">70%</span>
+                                    </div>
+                                    <div class="skill-bar">
+                                        <div class="skill-progress" style="width: 70%;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Database Section -->
+                <section class="skills-section">
+                    <h2 class="section-title" data-aos="fade-up"><i class="fas fa-database"></i> Database</h2>
+                    
+                    <div class="skills-grid">
+                        <div class="skill-category" data-aos="fade-up" data-aos-delay="100">
+                            <div class="skill-items">
+                                <div class="skill-item">
+                                    <div class="skill-info">
+                                        <span class="skill-name">MySQL</span>
+                                        <span class="skill-percentage">80%</span>
+                                    </div>
+                                    <div class="skill-bar">
+                                        <div class="skill-progress" style="width: 80%;"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="skill-item">
+                                    <div class="skill-info">
+                                        <span class="skill-name">SQL Server</span>
+                                        <span class="skill-percentage">80%</span>
+                                    </div>
+                                    <div class="skill-bar">
+                                        <div class="skill-progress" style="width: 80%;"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="skill-item">
+                                    <div class="skill-info">
+                                        <span class="skill-name">PostgreSQL</span>
+                                        <span class="skill-percentage">70%</span>
+                                    </div>
+                                    <div class="skill-bar">
+                                        <div class="skill-progress" style="width: 70%;"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="skill-item">
+                                    <div class="skill-info">
+                                        <span class="skill-name">MongoDB</span>
+                                        <span class="skill-percentage">50%</span>
+                                    </div>
+                                    <div class="skill-bar">
+                                        <div class="skill-progress" style="width: 50%;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Additional Skills Section -->
+                <section class="skills-section">
+                    <h2 class="section-title" data-aos="fade-up"><i class="fas fa-tools"></i> Công Cụ & Kỹ Năng Khác</h2>
+                    
+                    <div class="skills-cards">
+                        <div class="skill-card" data-aos="zoom-in" data-aos-delay="100">
+                            <div class="skill-card-icon">
+                                <i class="fab fa-docker"></i>
+                            </div>
+                            <h3>Docker</h3>
+                            <p>Containerization và quản lý ứng dụng</p>
+                        </div>
+                        
+                        <div class="skill-card" data-aos="zoom-in" data-aos-delay="200">
+                            <div class="skill-card-icon">
+                                <i class="fab fa-ubuntu"></i>
+                            </div>
+                            <h3>Ubuntu/Linux</h3>
+                            <p>Quản trị hệ thống và server deployment</p>
+                        </div>
+                        
+                        <div class="skill-card" data-aos="zoom-in" data-aos-delay="300">
+                            <div class="skill-card-icon">
+                                <i class="fab fa-git-alt"></i>
+                            </div>
+                            <h3>Git & GitHub</h3>
+                            <p>Quản lý mã nguồn và phiên bản</p>
+                        </div>
+                        
+                        <div class="skill-card" data-aos="zoom-in" data-aos-delay="400">
+                            <div class="skill-card-icon">
+                                <i class="fas fa-cogs"></i>
+                            </div>
+                            <h3>Các Công Cụ Khác</h3>
+                            <p>Figma, Unity, Android Studio, và nhiều công cụ khác</p>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Languages Section -->
+                <section class="skills-section">
+                    <h2 class="section-title" data-aos="fade-up"><i class="fas fa-language"></i> Ngôn Ngữ</h2>
+                    
+                    <div class="languages-container">
+                        <div class="language-card" data-aos="zoom-in" data-aos-delay="100">
+                            <div class="language-flag">
+                                <img src="Assets/Image/Flag_of_VietNam.png" alt="Vietnam Flag">
+                            </div>
+                            <div class="language-info">
+                                <div class="language-circle">
+                                    <div class="language-progress" data-progress="100">
+                                        <span class="language-percent">100%</span>
+                                    </div>
+                                </div>
+                                <div class="language-details">
+                                    <h4>Tiếng Việt</h4>
+                                    <p>Bản địa</p>
+                                    <div class="language-badges">
+                                        <span class="language-badge native">Tự nhiên</span>
+                                        <span class="language-badge advanced">Thông thạo</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="language-card" data-aos="zoom-in" data-aos-delay="300">
+                            <div class="language-info">
+                                <div class="language-circle">
+                                    <div class="language-progress" data-progress="75">
+                                        <span class="language-percent">75%</span>
+                                    </div>
+                                </div>
+                                <div class="language-details">
+                                    <h4>Tiếng Anh</h4>
+                                    <p>Upper-intermediate to Advanced</p>
+                                    <div class="language-badges">
+                                        <span class="language-badge proficient">B2</span>
+                                        <span class="language-badge advanced">C1</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
             </div>
-            <!-- Add your skills content here -->
+            <div class="footer">@2025 - Quốc Bảo (nupniichan)</div>
         </div>
     </main>
 
+    <!-- AOS Animation -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init({
+                duration: 800,
+                easing: 'ease-in-out',
+                once: true,
+                disable: window.innerWidth < 480
+            });
+            
+            // Initialize language progress circles
+            document.querySelectorAll('.language-progress').forEach(function(item) {
+                const progress = item.getAttribute('data-progress');
+                const angle = 3.6 * progress;
+                
+                if (progress <= 50) {
+                    item.style.backgroundImage = `linear-gradient(90deg, var(--secondary-bg) 50%, transparent 50%), linear-gradient(${angle + 90}deg, var(--accent-color) 50%, var(--secondary-bg) 50%)`;
+                } else {
+                    item.style.backgroundImage = `linear-gradient(${angle - 90}deg, var(--accent-color) 50%, transparent 50%), linear-gradient(270deg, var(--accent-color) 50%, var(--secondary-bg) 50%)`;
+                }
+            });
+            
+            // Initialize skill progress bars with animation
+            document.querySelectorAll('.skill-progress').forEach(function(bar) {
+                // Get the width from parent element
+                const width = bar.style.width;
+                
+                // Set initial width to 0 for animation
+                bar.style.width = '0%';
+                
+                // Set the custom property for later animation
+                bar.style.setProperty('--progress-width', width);
+                
+                // Trigger animation after a short delay
+                setTimeout(() => {
+                    bar.style.width = width;
+                }, 300);
+            });
+        });
+    </script>
 </body>
 
 </html> 

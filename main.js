@@ -84,7 +84,7 @@ let isTyping = false;
 const typingElement = document.querySelector('.typing-text');
 
 function eraseText() {
-    if (!isTyping) return;
+    if (!isTyping || !typingElement) return;
     const currentText = typingElement.textContent;
     if (currentText.length > 0) {
         typingElement.textContent = currentText.slice(0, -1);
@@ -97,7 +97,7 @@ function eraseText() {
 }
 
 function type() {
-    if (!isTyping) return;
+    if (!isTyping || !typingElement) return;
     const currentText = texts[textIndex];
     if (charIndex < currentText.length) {
         typingElement.textContent += currentText.charAt(charIndex);
@@ -109,8 +109,9 @@ function type() {
 }
 
 function resetTyping() {
-    isTyping = false;
+    if (!typingElement) return;
     
+    isTyping = false;
     typingElement.textContent = '';
     textIndex = 0;
     charIndex = 0;
@@ -119,6 +120,19 @@ function resetTyping() {
         isTyping = true;
         type();
     }, 500);
+}
+
+// Define resetLinksAnimation function
+function resetLinksAnimation() {
+    const links = document.querySelectorAll('.link');
+    if (!links || links.length === 0) return;
+    
+    links.forEach((link, index) => {
+        link.style.opacity = '1';
+        link.style.animation = 'none';
+        link.offsetHeight; // Force reflow
+        link.style.animation = `fadeIn 0.6s ease forwards ${index * 0.1}s`;
+    });
 }
 
 let isSidebarOpen = localStorage.getItem('sidebarOpen') === 'true';
@@ -198,7 +212,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (isSidebarOpen && 
                 !sidebar.contains(e.target) && 
                 !sidebarToggle.contains(e.target) &&
-                !e.target.closest('.sidebar')) {
+                window.innerWidth <= 768) {
                 toggleSidebar(false);
             }
         });
@@ -244,6 +258,9 @@ document.addEventListener('DOMContentLoaded', () => {
         let isPlaying = false;
         const isMobile = () => window.innerWidth <= 600;
 
+        // Thêm transition cho thanh progress
+        musicProgress.style.transition = 'width 0.15s ease';
+
         function updateProgressBar() {
             if (bgMusic.duration) {
                 const progressPercent = (bgMusic.currentTime / bgMusic.duration) * 100;
@@ -282,12 +299,12 @@ document.addEventListener('DOMContentLoaded', () => {
         progressContainer.addEventListener('click', function(e) {
             e.stopPropagation();
             
-            if (isPlaying) {
-                const progressRect = this.getBoundingClientRect();
-                const clickPosition = e.clientX - progressRect.left;
-                const percentageClicked = clickPosition / progressRect.width;
+            const progressRect = this.getBoundingClientRect();
+            const clickPosition = e.clientX - progressRect.left;
+            const percentageClicked = clickPosition / progressRect.width;
+            
+            if (bgMusic.duration) {
                 const seekTime = percentageClicked * bgMusic.duration;
-                
                 bgMusic.currentTime = seekTime;
                 musicProgress.style.width = (percentageClicked * 100) + '%';
             }
@@ -376,7 +393,9 @@ async function switchTheme(e) {
         await showLoadingOverlay();
  
         if (isLightMode) {
-            particlesContainer.style.opacity = '0';
+            if (particlesContainer) {
+                particlesContainer.style.opacity = '0';
+            }
             
             if (window.pJSDom && window.pJSDom[0]) {
                 window.pJSDom[0].pJS.particles.move.enable = false;
@@ -408,11 +427,19 @@ async function switchTheme(e) {
                 window.pJSDom[0].pJS.fn.particlesRefresh();
             }
             
-            particlesContainer.style.opacity = '1';
+            if (particlesContainer) {
+                particlesContainer.style.opacity = '1';
+            }
         }
         
-        resetLinksAnimation();
-        resetTyping();
+        // Only call these functions if they're necessary for the current page
+        if (typeof resetLinksAnimation === 'function') {
+            resetLinksAnimation();
+        }
+        
+        if (typeof resetTyping === 'function') {
+            resetTyping();
+        }
         
         setTimeout(async () => {
             await hideLoadingOverlay();
