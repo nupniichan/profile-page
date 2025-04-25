@@ -4,15 +4,16 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Contact - nupniichan</title>
+    <title>Liên hệ - nupniichan</title>
+    <link rel="icon" type="image/x-icon" href="../Assets/Image/Avatar/favicon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script type="module" defer src="main.js"></script>
+    <script type="module" defer src="../js/main.js"></script>
 
-    <link rel="stylesheet" href="animations.css" />
-    <link rel="stylesheet" href="main.css" />
-    <link rel="stylesheet" href="contact.css" />
-    <link rel="stylesheet" href="responsive.css" />
+    <link rel="stylesheet" href="../css/animations.css" />
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="stylesheet" href="../css/contact.css" />
+    <link rel="stylesheet" href="../css/responsive.css" />
 </head>
 
 <body>
@@ -27,14 +28,14 @@
     <!-- Sidebar -->
     <div class="sidebar">
         <div class="sidebar-header">
-            <img src="Assets/Image/avatar2.png" alt="Profile Picture" class="sidebar-avatar">
+            <img src="../Assets/Image/Avatar/avatar2.png" alt="Profile Picture" class="sidebar-avatar">
             <h3>Quốc Bảo</h3>
             <p>@nupniichan</p>
         </div>
 
         <nav class="sidebar-nav">
             <ul>
-                <li><a href="index.html"><i class="fas fa-home"></i> Trang chủ</a></li>
+                <li><a href="../index.html"><i class="fas fa-home"></i> Trang chủ</a></li>
                 <li><a href="about.html"><i class="fas fa-user"></i> Giới thiệu</a></li>
                 <li><a href="skills.html"><i class="fas fa-code"></i> Kỹ năng</a></li>
                 <li><a href="projects.html"><i class="fas fa-project-diagram"></i> Dự án</a></li>
@@ -62,7 +63,7 @@
                     <div class="progress-bar" id="musicProgress"></div>
                 </div>
                 <audio id="bgMusic" loop>
-                    <source src="Assets/Music/Hanayamata-opening.webm" type="audio/mp3" volume="0.5">
+                    <source src="../Assets/Music/Hanayamata-opening.webm" type="audio/mp3" volume="0.5">
                 </audio>
             </div>
 
@@ -134,7 +135,7 @@
                             <div class="info-details" style="text-align: center;">
                                 <h3>Quay về trang chủ</h3>
                                 <p>Xem thêm thông tin về các trang mạng xã hội của mình</p>
-                                <a href="index.html" class="contact-link" style="justify-content: center;">
+                                <a href="../index.html" class="contact-link" style="justify-content: center;">
                                     <i class="fas fa-arrow-right"></i> Về trang chủ
                                 </a>
                             </div>
@@ -166,43 +167,36 @@
                 duration: 800,
                 easing: 'ease-in-out',
                 once: true,
-                disable: window.innerWidth < 480 // Tắt animation trên thiết bị quá nhỏ để tránh vấn đề hiệu suất
+                disable: window.innerWidth < 480 
             });
         });
     </script>
     
-    <!-- QR Code Script -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // QR Code functionality
             const modal = document.getElementById('qrModal');
             const qrImage = document.getElementById('qrImage');
             const qrTitle = document.getElementById('qrTitle');
             const closeBtn = document.querySelector('.qr-close');
             const qrButtons = document.querySelectorAll('.qr-button');
             
-            // QR Code images
             const qrCodes = {
-                telegram: 'Assets/Image/telegram-qr.jpg',
-                zalo: 'Assets/Image/zalo-qr.jpg'
+                telegram: '../Assets/Image/QR/telegram-qr.jpg',
+                zalo: '../Assets/Image/QR/zalo-qr.jpg'
             };
             
-            // Open modal with appropriate QR code
             qrButtons.forEach(button => {
                 button.addEventListener('click', function() {
                     const platform = this.getAttribute('data-platform');
                     
-                    // Preload image for smoother display
                     const img = new Image();
                     img.onload = function() {
                         qrImage.src = qrCodes[platform];
                         qrTitle.textContent = platform === 'telegram' ? 'Telegram QR Code' : 'Zalo QR Code';
                         modal.style.display = 'block';
                         
-                        // Add body class to prevent scrolling
                         document.body.classList.add('modal-open');
                         
-                        // Add animation class
                         setTimeout(() => {
                             qrImage.classList.add('qr-image-visible');
                         }, 100);
@@ -211,17 +205,14 @@
                 });
             });
             
-            // Close modal
             closeBtn.addEventListener('click', closeModal);
             
-            // Close modal when clicking outside
             window.addEventListener('click', function(event) {
                 if (event.target === modal) {
                     closeModal();
                 }
             });
             
-            // Close modal with Escape key
             document.addEventListener('keydown', function(event) {
                 if (event.key === 'Escape' && modal.style.display === 'block') {
                     closeModal();
@@ -229,10 +220,8 @@
             });
             
             function closeModal() {
-                // Add closing animation
                 qrImage.classList.remove('qr-image-visible');
                 
-                // Delay closing to allow for animation
                 setTimeout(() => {
                     modal.style.display = 'none';
                     document.body.classList.remove('modal-open');

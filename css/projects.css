@@ -37,7 +37,6 @@
     font-size: 1rem;
 }
 
-/* Skills Section */
 .skills-section {
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
@@ -121,7 +120,6 @@
     transition: width 1s ease;
 }
 
-/* Projects Section */
 .projects-section {
     background: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(10px);
@@ -237,7 +235,6 @@
     transform: translateY(-2px);
 }
 
-/* Dark mode specific styles */
 [data-theme="dark"] .skills-section,
 [data-theme="dark"] .projects-section {
     background: rgba(20, 20, 30, 0.5);
@@ -261,7 +258,6 @@
     color: #ffffff;
 }
 
-/* Responsive adjustments */
 @media (max-width: 1024px) {
     .projects-container {
         padding: 1.5rem;

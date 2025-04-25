@@ -1,0 +1,90 @@
+
+/*
+  Main Script
+  - Initialize essential components and features
+  - Load non-critical features asynchronously
+*/
+
+// Import necessary modules
+import { initSidebar, initAudioPlayer, highlightActiveSection } from './sidebar.js';
+import { initThemeSwitch } from './theme.js';
+import { initModal } from './modal.js';
+import { optimizeAvatarGif } from './optimize-images.js';
+
+// Initialize reset functions
+const resetFunctions = {}; 
+
+document.addEventListener('DOMContentLoaded', async () => {
+  // Optimize avatar GIF
+  optimizeAvatarGif();
+  
+  // Initialize sidebar
+  initSidebar();
+  initAudioPlayer();
+  highlightActiveSection();
+  initThemeSwitch();
+  initModal();
+  
+  const loadingOverlay = document.querySelector('.loading-overlay');
+  const hasVisitedBefore = localStorage.getItem('hasVisited');
+  
+  if (!hasVisitedBefore) {
+    loadingOverlay.classList.add('show');
+    localStorage.setItem('hasVisited', 'true');
+    
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    
+    loadingOverlay.classList.add('hide');
+    setTimeout(() => {
+      loadingOverlay.classList.remove('show', 'hide');
+    }, 500);
+  }
+  
+  const mainContent = document.querySelector('main');
+  if (mainContent) {
+    mainContent.style.opacity = '1';
+  }
+
+  loadNonCriticalFeatures();
+});
+
+// Function to load non-critical features
+async function loadNonCriticalFeatures() {
+  const [
+    { initParticles },
+    { initAvatarEffect },
+    { initTypingAnimation, resetTyping },
+    { initSocialLinks, resetLinksAnimation },
+    { initImageOptimization }
+  ] = await Promise.all([
+    import('./particles-config.js'),
+    import('./avatar.js'),
+    import('./typing.js'),
+    import('./social-links.js'),
+    import('./optimize-images.js')
+  ]);
+
+  initImageOptimization();
+
+  initParticles();
+  
+  initAvatarEffect();
+  initTypingAnimation();
+  initSocialLinks();
+  
+  resetFunctions.resetLinksAnimation = resetLinksAnimation;
+  resetFunctions.resetTyping = resetTyping;
+  
+  window.resetLinksAnimation = resetLinksAnimation;
+  window.resetTyping = resetTyping;
+}
+
+window.addEventListener('themeChanged', (event) => {
+  if (resetFunctions.resetLinksAnimation) {
+    resetFunctions.resetLinksAnimation();
+  }
+  
+  if (resetFunctions.resetTyping) {
+    resetFunctions.resetTyping();
+  }
+});

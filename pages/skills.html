@@ -4,18 +4,18 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Skills - nupniichan</title>
+    <title>Kỹ năng - nupniichan</title>
+    <link rel="icon" type="image/x-icon" href="../Assets/Image/Avatar/favicon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script type="module" defer src="main.js"></script>
+    <script type="module" defer src="../js/main.js"></script>
 
-    <link rel="stylesheet" href="animations.css" />
-    <link rel="stylesheet" href="main.css" />
-    <link rel="stylesheet" href="skills.css" />
-    <link rel="stylesheet" href="responsive.css" />
+    <link rel="stylesheet" href="../css/animations.css" />
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="stylesheet" href="../css/skills.css" />
+    <link rel="stylesheet" href="../css/responsive.css" />
     
     <style>
-        /* Override styles to match about.html particles display */
         #particles-js {
             position: fixed;
             width: 100%;
@@ -47,14 +47,14 @@
     <!-- Sidebar -->
     <div class="sidebar">
         <div class="sidebar-header">
-            <img src="Assets/Image/avatar2.png" alt="Profile Picture" class="sidebar-avatar">
+            <img src="../Assets/Image/Avatar/avatar2.png" alt="Profile Picture" class="sidebar-avatar">
             <h3>Quốc Bảo</h3>
             <p>@nupniichan</p>
         </div>
 
         <nav class="sidebar-nav">
             <ul>
-                <li><a href="index.html"><i class="fas fa-home"></i> Trang chủ</a></li>
+                <li><a href="../index.html"><i class="fas fa-home"></i> Trang chủ</a></li>
                 <li><a href="about.html"><i class="fas fa-user"></i> Giới thiệu</a></li>
                 <li><a href="skills.html" class="active"><i class="fas fa-code"></i> Kỹ năng</a></li>
                 <li><a href="projects.html"><i class="fas fa-project-diagram"></i> Dự án</a></li>
@@ -82,7 +82,7 @@
                     <div class="progress-bar" id="musicProgress"></div>
                 </div>
                 <audio id="bgMusic" loop>
-                    <source src="Assets/Music/Hanayamata-opening.webm" type="audio/mp3" volume="0.5">
+                    <source src="../Assets/Music/Hanayamata-opening.webm" type="audio/mp3" volume="0.5">
                 </audio>
             </div>
 
@@ -296,7 +296,7 @@
                     <div class="languages-container">
                         <div class="language-card" data-aos="zoom-in" data-aos-delay="100">
                             <div class="language-flag">
-                                <img src="Assets/Image/Flag_of_VietNam.png" alt="Vietnam Flag">
+                                <img src="../Assets/Image/CountryFlag/Flag_of_VietNam.png" alt="Vietnam Flag">
                             </div>
                             <div class="language-info">
                                 <div class="language-circle">
@@ -351,7 +351,6 @@
                 disable: window.innerWidth < 480
             });
             
-            // Initialize language progress circles
             document.querySelectorAll('.language-progress').forEach(function(item) {
                 const progress = item.getAttribute('data-progress');
                 const angle = 3.6 * progress;
@@ -363,18 +362,13 @@
                 }
             });
             
-            // Initialize skill progress bars with animation
             document.querySelectorAll('.skill-progress').forEach(function(bar) {
-                // Get the width from parent element
                 const width = bar.style.width;
                 
-                // Set initial width to 0 for animation
                 bar.style.width = '0%';
                 
-                // Set the custom property for later animation
                 bar.style.setProperty('--progress-width', width);
                 
-                // Trigger animation after a short delay
                 setTimeout(() => {
                     bar.style.width = width;
                 }, 300);

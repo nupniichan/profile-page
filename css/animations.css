@@ -1,3 +1,9 @@
+
+/*
+  Animations
+  - Define animations for the website, any animation should be placed here
+*/
+
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
@@ -67,7 +73,6 @@
     50% { transform: translateY(-5px); }
 }
 
-/* Animation utility classes */
 .glow-icon {
     filter: drop-shadow(0 0 8px rgba(110, 66, 255, 0.6));
 }

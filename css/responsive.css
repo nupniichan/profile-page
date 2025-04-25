@@ -1,4 +1,8 @@
-/* Mobile Styles */
+/*
+  Responsive CSS
+  - Define responsive styles for the website
+*/
+
 @media (max-width: 600px) {
     body {
         background-size: cover;
@@ -96,7 +100,6 @@
     }
 }
 
-/* Tablet and Small Desktop Styles */
 @media (max-width: 768px) {
     .sidebar {
         width: 280px;
@@ -207,7 +210,6 @@
     }
 }
 
-/* Small Mobile Styles */
 @media (max-width: 480px) {
     .sidebar {
         width: 100%;
@@ -243,7 +245,6 @@
     }
 }
 
-/* About Page Responsive Styles */
 @media (max-width: 1024px) {
     .about-container {
         padding: 1rem;
@@ -362,7 +363,6 @@
     }
 }
 
-/* Dark mode adjustments for mobile */
 @media (max-width: 768px) {
     [data-theme="dark"] .sidebar-toggle {
         background: rgba(0, 0, 0, 0.3);
@@ -370,7 +370,6 @@
     }
 }
 
-/* Contact Page Responsive Styles */
 @media (max-width: 768px) {
     .contact-container {
         width: 100%;
@@ -453,7 +452,6 @@
     }
 }
 
-/* Make sure footer doesn't overlap with content */
 @media (max-height: 800px) {
     .footer {
         position: relative;

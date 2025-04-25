@@ -1,4 +1,8 @@
-/* Skills page styles */
+/*
+  Skills Page
+  - Style for the skills page
+*/
+
 .skills-container {
     max-width: 1300px;
     margin: 0 auto;
@@ -36,7 +40,6 @@
     line-height: 1.6;
 }
 
-/* Skills content layout */
 .skills-content {
     display: flex;
     flex-direction: column;
@@ -103,7 +106,6 @@
     border-radius: 20px;
 }
 
-/* Section titles */
 .section-title {
     font-size: 1.8rem;
     color: var(--text-color);
@@ -144,7 +146,6 @@
     100% { background-position: 100px; }
 }
 
-/* Skills grid layout */
 .skills-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
@@ -153,13 +154,11 @@
     margin-bottom: 1rem;
 }
 
-/* Skills section */
 .skills-section {
     margin-bottom: 1.5rem;
     width: 100%;
 }
 
-/* Skill category */
 .skill-category {
     background: rgba(255, 255, 255, 0.05);
     padding: 2.5rem;
@@ -188,7 +187,6 @@
     color: var(--accent-color);
 }
 
-/* Skill item with progress bar */
 .skill-items {
     display: flex;
     flex-direction: column;
@@ -249,10 +247,9 @@
     50% { opacity: 1; }
 }
 
-/* Skills cards for additional skills */
 .skills-cards {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Force exactly 2 columns */
+    grid-template-columns: repeat(2, 1fr); 
     gap: 3rem;
     margin-bottom: 1rem;
 }
@@ -314,7 +311,6 @@
     margin: 0 auto;
 }
 
-/* Language section */
 .languages-container {
     display: flex;
     justify-content: center;
@@ -465,7 +461,6 @@
     color: #1a1a1a;
 }
 
-/* Media queries adjustment for languages */
 @media (max-width: 768px) {
     .languages-container {
         flex-direction: column;
@@ -520,7 +515,6 @@
     }
 }
 
-/* Responsive adjustments */
 @media (max-width: 1200px) {
     .skills-container {
         padding: 2rem 1.5rem;
@@ -590,8 +584,8 @@
     }
     
     .skills-cards {
-        grid-template-columns: 1fr; /* Single column on mobile */
-        gap: 5rem; /* Increase gap on mobile for better separation */
+        grid-template-columns: 1fr;
+        gap: 5rem; 
     }
     
     .skill-card {
@@ -687,7 +681,6 @@
     }
 }
 
-/* Dark Mode Adjustments */
 [data-theme="dark"] .skills-content {
     background: rgba(20, 20, 30, 0.6);
     border: 1px solid rgba(255, 255, 255, 0.05);
@@ -705,7 +698,6 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Animation for skill bars */
 .skills-section.aos-animate .skill-progress {
     width: var(--progress-width);
 } 

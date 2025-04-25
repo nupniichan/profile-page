@@ -50,7 +50,7 @@ cd profile-page
 
 ## 🎨 Customize It!  
 
-🔹 **Change the Avatar & Background** – Replace `Assets/Image/Avatar.gif`.  
+🔹 **Change the Avatar & Background** – Replace `Assets/Image/Avatar/Avatar.gif`.  
 🔹 **Edit Social Links** – Update `links.js`.  
 🔹 **Modify Colors & Animations** – Change styles in `main.css`.  
 🔹 **Use Your Own Music** – Replace `Assets/Music/BGM.mp3`.  

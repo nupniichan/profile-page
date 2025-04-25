@@ -1,4 +1,8 @@
-/* Contact page styles */
+/*
+  Contact Page
+  - Style for the contact page
+*/
+
 .contact-container {
     max-width: 1300px;
     margin: 0 auto;
@@ -36,7 +40,6 @@
     line-height: 1.6;
 }
 
-/* Contact content layout */
 .contact-content {
     display: flex;
     flex-direction: column;
@@ -111,7 +114,6 @@
     border-radius: 20px;
 }
 
-/* Contact cards grid */
 .contact-cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -125,7 +127,6 @@
     margin: 0 auto;
 }
 
-/* Info cards */
 .info-card {
     display: flex;
     align-items: center;
@@ -284,7 +285,6 @@
     50% { transform: translateX(5px); }
 }
 
-/* Social section */
 .social-section {
     text-align: center;
     margin-top: 1rem;
@@ -298,7 +298,6 @@
     margin-bottom: 1.5rem;
 }
 
-/* Social links */
 .social-links {
     display: flex;
     gap: 1.2rem;
@@ -327,7 +326,6 @@
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-/* Responsive adjustments */
 @media (max-width: 1200px) {
     .contact-container {
         padding: 2rem 1.5rem;
@@ -467,7 +465,6 @@
     }
 }
 
-/* Dark Mode Adjustments */
 [data-theme="dark"] .contact-content {
     background: rgba(20, 20, 30, 0.6);
     border: 1px solid rgba(255, 255, 255, 0.05);
@@ -493,7 +490,6 @@
     border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* QR Modal Styles */
 .qr-modal {
     display: none;
     position: fixed;

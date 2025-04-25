@@ -1,4 +1,8 @@
-/* Avatar */
+/*
+  Home Page
+  - Style for the home page ( Or called index.html because github auto find the index.html file )
+*/
+
 .avatarContainer {
     perspective: 1000px;
     transform-style: preserve-3d;
@@ -25,7 +29,6 @@
     transition: transform 0.3s ease;
 }
 
-/* Greetings */
 .greetings {
     font-size: 2rem;
     font-weight: 700;
@@ -49,7 +52,6 @@
         -1px 1px 0 #000,
         1px 1px 0 #000;
 }
-/* Links */
 .link {
     height: 2.75rem;
     width: 600px;
@@ -60,18 +62,15 @@
     margin: 0.5rem 0;
     border-radius: 15px;
     opacity: 0;
-    animation: slideIn 0.5s ease forwards;
-    animation-delay: calc(var(--order) * 0.1s);
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
     box-shadow: 0 8px 32px 0 var(--link-shadow);
-    transition: all 0.5s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     position: relative;
     overflow: hidden;
     color: var(--link-text);
     transform-origin: center;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .link::before {
@@ -110,6 +109,7 @@
 .link img {
     height: 2rem;
     aspect-ratio: 1;
+    transition: transform 0.5s ease;
 }
 
 .linkIcon {
@@ -120,10 +120,8 @@
 .link:hover img {
     transform: scale(1.2);
     animation: pulseAnimation 1s infinite alternate;
-    transition: all 0.5s ease;
 }
 
-/* Link Colors */
 .link:nth-child(1) {
     background: linear-gradient(90deg,
             rgba(204, 204, 255, 0.1) 30%,
@@ -237,7 +235,6 @@
     border: 2px solid #1A1AFF;
 }
 
-/* Modal */
 .modal {
     display: none;
     position: fixed;
@@ -264,7 +261,6 @@
     animation: scaleUp 0.5s forwards;
 }
 
-/* Theme Transition */
 .theme-transition-overlay {
     position: fixed;
     top: 0;
@@ -283,7 +279,6 @@
     visibility: visible;
 }
 
-/* Typing Text */
 .typing-text {
     display: block;
     margin-top: 10px;
