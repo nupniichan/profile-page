@@ -107,9 +107,8 @@
 }
 
 .section-title {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     color: var(--text-color);
-    margin-bottom: 2.5rem;
     padding-bottom: 0.8rem;
     position: relative;
     display: inline-block;
@@ -155,7 +154,7 @@
 }
 
 .skills-section {
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.5rem;
     width: 100%;
 }
 
@@ -224,7 +223,7 @@
 .skill-progress {
     height: 100%;
     border-radius: 10px;
-    background: linear-gradient(90deg, var(--accent-color), #6e42ff);
+    background: linear-gradient(90deg, var(--accent-color), #cccfff);
     position: relative;
     width: 0;
     transition: width 1.5s cubic-bezier(0.1, 0.45, 0.1, 1);
@@ -280,7 +279,7 @@
     width: 90px;
     height: 90px;
     border-radius: 50%;
-    background: linear-gradient(135deg, var(--accent-color), #6e42ff);
+    background: linear-gradient(135deg, var(--accent-color), #cccfff);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -301,6 +300,7 @@
     font-size: 1.4rem;
     color: var(--text-color);
     margin-bottom: 1.2rem;
+    line-height: 1.5;
 }
 
 .skill-card p {
@@ -313,16 +313,16 @@
 
 .languages-container {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     gap: 2.5rem;
     flex-wrap: wrap;
-    margin-top: 2rem;
     padding: 1rem 0;
+    width: 100%;
 }
 
 .language-card {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     background: rgba(255, 255, 255, 0.05);
     border-radius: 16px;
@@ -349,6 +349,7 @@
     border-radius: 50%;
     overflow: hidden;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1;
 }
 
 .language-flag img {
@@ -359,16 +360,17 @@
 
 .language-info {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
+    gap: 1.5rem;
     width: 100%;
 }
 
 .language-circle {
-    width: 120px;
-    height: 120px;
+    width: 100px;
+    height: 100px;
     position: relative;
-    margin-bottom: 1.5rem;
+    flex-shrink: 0;
 }
 
 .language-progress {
@@ -380,22 +382,44 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 20px rgba(110, 66, 255, 0.3);
 }
 
 .language-card:hover .language-progress {
-    transform: scale(1.05);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    transform: scale(1.1);
+    box-shadow: 0 15px 30px rgba(110, 66, 255, 0.4);
 }
 
 .language-percent {
     color: var(--text-color);
     font-size: 1.3rem;
     font-weight: 600;
+    position: relative;
+    z-index: 2;
+}
+
+.language-progress::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    background: linear-gradient(135deg, var(--accent-color), #cccfff);
+    border-radius: 50%;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.language-card:hover .language-progress::before {
+    opacity: 0.3;
+    animation: pulse 2s infinite;
 }
 
 .language-details {
-    text-align: center;
+    text-align: left;
     width: 100%;
 }
 
@@ -470,48 +494,85 @@
     
     .language-card {
         width: 100%;
-        max-width: 300px;
-    }
-    
-    .language-circle {
-        width: 100px;
-        height: 100px;
-    }
-    
-    .language-percent {
-        font-size: 1.1rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .language-card {
-        padding: 1.5rem;
-        max-width: 280px;
-    }
-    
-    .language-flag {
-        width: 35px;
-        height: 35px;
-        top: 1.2rem;
-        right: 1.2rem;
+        max-width: 360px;
+        padding: 1.8rem;
     }
     
     .language-circle {
         width: 90px;
         height: 90px;
-        margin-bottom: 1.2rem;
+    }
+    
+    .language-percent {
+        font-size: 1.1rem;
+    }
+    
+    .languages-container {
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .language-card {
+        flex-direction: column;
+        padding: 1.5rem;
+        width: 100%;
+        max-width: 100%;
+        gap: 1.5rem;
+        padding: 1.5rem 1rem; 
+        margin: 0; 
+        box-sizing: border-box; 
+    }
+    
+    .language-flag {
+        width: 30px;
+        height: 30px;
+        top: 1rem;
+        right: 1rem;
+    }
+    
+    .language-info {
+        flex-direction: column;
+        gap: 1.5rem;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .language-circle {
+        width: 70px;
+        height: 70px;
+        margin: 0;
     }
     
     .language-percent {
         font-size: 1rem;
     }
     
+    .language-details {
+        text-align: center;
+        padding: 0 0.5rem;
+    }
+    
     .language-card h4 {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
+        margin-bottom: 0.8rem;
     }
     
     .language-card p {
         font-size: 0.9rem;
+        margin: 0.5rem 0;
+    }
+    
+    .language-badges {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-top: 0.8rem;
+    }
+
+    .language-badge {
+        padding: 0.25rem 0.6rem;
+        font-size: 0.75rem;
     }
 }
 
@@ -522,22 +583,24 @@
     
     .skills-content {
         max-width: 95%;
-        gap: 4rem;
+        gap: 3.5rem;
     }
     
     .skills-grid {
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2.5rem;
     }
     
     .skills-cards {
         grid-template-columns: repeat(2, 1fr);
+        gap: 2.5rem;
     }
 }
 
 @media (max-width: 992px) {
     .skills-content {
         padding: 3rem 2rem;
-        gap: 3.5rem;
+        gap: 3rem;
     }
     
     .section-header h1 {
@@ -556,15 +619,15 @@
         padding: 2rem;
     }
     
-    .skill-card {
-        padding: 2.5rem;
-        min-height: 230px;
+    .skills-cards {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 3rem;
+        padding: 0 1rem;
     }
     
-    .skill-card-icon {
-        width: 80px;
-        height: 80px;
-        margin-bottom: 2rem;
+    .skill-card {
+        padding: 2rem;
+        min-height: 200px;
     }
 }
 
@@ -575,49 +638,21 @@
     
     .skills-content {
         padding: 2.5rem 1.5rem;
-        gap: 3rem;
+        gap: 2.5rem;
     }
     
     .skills-grid {
         grid-template-columns: 1fr;
-        gap: 2.5rem;
+        gap: 2rem;
     }
     
     .skills-cards {
         grid-template-columns: 1fr;
-        gap: 5rem; 
-    }
-    
-    .skill-card {
-        padding: 2.5rem;
-        min-height: 220px;
-    }
-    
-    .skill-card-icon {
-        width: 70px;
-        height: 70px;
-        margin-bottom: 1.8rem;
-    }
-    
-    .language-circle {
-        width: 100px;
-        height: 100px;
-    }
-    
-    .language-percent {
-        font-size: 1.1rem;
+        gap: 2.5rem;
     }
     
     .languages-container {
-        gap: 3rem;
-    }
-    
-    .language-item {
-        width: 120px;
-    }
-    
-    .welcome-text {
-        margin-bottom: 2rem;
+        gap: 2rem;
     }
 }
 
@@ -634,50 +669,24 @@
         padding: 2rem 1.2rem;
         border-radius: 15px;
         margin-bottom: 1rem;
-        gap: 2.5rem;
+        gap: 2rem;
     }
     
     .section-title {
         font-size: 1.4rem;
-        margin-bottom: 1.8rem;
+        margin-bottom: 1.5rem;
     }
     
     .skill-category {
         padding: 1.5rem;
     }
     
-    .skill-card {
-        padding: 2rem;
-        min-height: 200px;
-    }
-    
-    .skill-card-icon {
-        width: 65px;
-        height: 65px;
-        font-size: 1.6rem;
-        margin-bottom: 1.5rem;
-    }
-    
-    .skill-card h3 {
-        font-size: 1.2rem;
-        margin-bottom: 1rem;
+    .skills-cards {
+        gap: 2rem;
     }
     
     .languages-container {
         gap: 1.5rem;
-    }
-    
-    .language-item {
-        width: 100px;
-    }
-    
-    .language-circle {
-        width: 80px;
-        height: 80px;
-    }
-    
-    .language-percent {
-        font-size: 0.9rem;
     }
 }
 

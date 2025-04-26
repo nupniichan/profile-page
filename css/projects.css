@@ -17,7 +17,7 @@
     margin-bottom: 1rem;
 }
 
-.section-header h1 {
+.section-header h2 {
     font-size: 2rem;
     color: var(--text-color);
     margin: 0;
@@ -25,7 +25,7 @@
     position: relative;
 }
 
-.section-header h1::after {
+.section-header h2::after {
     content: '';
     position: absolute;
     bottom: 0;

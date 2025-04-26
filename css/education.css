@@ -102,7 +102,7 @@
     transform: translateX(-50%) translateY(25%);
     width: 40px;
     height: 40px;
-    background: linear-gradient(45deg, var(--accent-color), #6e42ff);
+    background: linear-gradient(45deg, var(--accent-color), #cccfff);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -132,7 +132,7 @@
 
 .timeline-date {
     display: inline-block;
-    background: linear-gradient(45deg, var(--accent-color), #6e42ff);
+    background: linear-gradient(45deg, var(--accent-color), #cccfff);
     color: white;
     padding: 0.4rem 0.8rem;
     padding-left: 1.2rem;
@@ -154,7 +154,6 @@
 
 .timeline-card {
     background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
     border-radius: 15px;
     padding: 2rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -163,6 +162,8 @@
     transform-origin: center;
     position: relative;
     overflow: hidden;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .timeline-card::before {
@@ -341,7 +342,7 @@
 .certification-icon {
     width: 40px;
     height: 40px;
-    background: linear-gradient(45deg, var(--accent-color), #6e42ff);
+    background: linear-gradient(45deg, var(--accent-color), #cccfff);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -429,6 +430,20 @@
         padding: 1.5rem;
     }
     
+    .about-header {
+        margin-bottom: 1.5rem;
+    }
+    
+    .about-header h1 {
+        font-size: 1.6rem;
+        padding-bottom: 1rem;
+    }
+    
+    .about-header h1::after {
+        width: 90px;
+        height: 3px;
+    }
+    
     .timeline {
         max-width: 100%;
     }
@@ -457,10 +472,6 @@
     .certification-card {
         padding: 1.2rem;
     }
-    
-    .about-header h1 {
-        font-size: 1.4rem;
-    }
 }
 
 @media (max-width: 768px) {
@@ -470,6 +481,20 @@
     
     .about-section {
         padding: 1.8rem;
+    }
+    
+    .about-header {
+        margin-bottom: 1.3rem;
+    }
+    
+    .about-header h1 {
+        font-size: 1.5rem;
+        padding-bottom: 1rem;
+    }
+    
+    .about-header h1::after {
+        width: 80px;
+        height: 3px;
     }
     
     .timeline-date {
@@ -487,7 +512,9 @@
     }
     
     .certification-card {
-        padding: 1rem;
+        padding: 1.6rem;
+        width: 100%;
+        box-sizing: border-box;
     }
     
     .certification-info h3 {
@@ -506,6 +533,12 @@
     .achievement {
         white-space: normal;
         padding: 0.7rem 1rem;
+    }
+    
+    .timeline-card {
+        padding: 1.6rem;
+        width: 100%;
+        box-sizing: border-box;
     }
 }
 
@@ -534,12 +567,25 @@
 }
 
 @media (max-width: 500px) {
+    .about-header {
+        margin-bottom: 1rem;
+        margin-top: 1rem;
+    }
+    
     .about-header h1 {
-        font-size: 1.2rem;
+        font-size: 1.4rem;
+        padding-bottom: 0.8rem;
+    }
+    
+    .about-header h1::after {
+        width: 70px;
+        height: 2px;
     }
     
     .timeline-card {
         padding: 1.5rem;
+        width: 100%;
+        box-sizing: border-box;
     }
     
     .timeline-card h3 {
@@ -566,6 +612,7 @@
         width: 100%;
         justify-content: flex-start;
         padding: 0.5rem 0.8rem;
+        box-sizing: border-box;
     }
     
     .achievement i {
@@ -603,15 +650,33 @@
         font-size: 0.7rem;
         margin-top: 8px;
     }
+    
+    .timeline-card {
+        padding: 1.5rem;
+        width: 100%;
+        box-sizing: border-box;
+    }
 }
 
 @media (max-width: 360px) {
+    .about-header {
+        margin-bottom: 1rem;
+    }
+    
     .about-header h1 {
-        font-size: 1.1rem;
+        font-size: 1.3rem;
+        padding-bottom: 0.8rem;
+    }
+    
+    .about-header h1::after {
+        width: 60px;
+        height: 2px;
     }
     
     .timeline-card {
         padding: 1.1rem;
+        width: 100%;
+        box-sizing: border-box;
     }
     
     .certification-card {
@@ -638,5 +703,11 @@
     .certification-date {
         font-size: 0.65rem;
         margin-top: 6px;
+    }
+    
+    .timeline-card {
+        padding: 1.1rem;
+        width: 100%;
+        box-sizing: border-box;
     }
 } 
