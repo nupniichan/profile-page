@@ -61,7 +61,7 @@ export function initThemeSwitch() {
   function showLoadingOverlay() {
     return new Promise(resolve => {
       const loadingOverlay = document.querySelector('.loading-overlay');
-      loadingOverlay.classList.add('show');
+      loadingOverlay.classList.remove('hide');
       setTimeout(resolve, 1500);
     });
   }
@@ -71,10 +71,7 @@ export function initThemeSwitch() {
     return new Promise(resolve => {
       const loadingOverlay = document.querySelector('.loading-overlay');
       loadingOverlay.classList.add('hide');
-      setTimeout(() => {
-        loadingOverlay.classList.remove('show', 'hide');
-        resolve();
-      }, 500);
+      setTimeout(resolve, 500);
     });
   }
   
@@ -101,24 +98,26 @@ export function initThemeSwitch() {
           window.pJSDom[0].pJS.particles.move.enable = false;
         }
         
+        // Apply theme change immediately
         document.documentElement.setAttribute('data-theme', 'light');
         sessionStorage.setItem('theme', 'light');
         
-        try {
-          await Promise.race([
-            new Promise(resolve => {
-              const img = new Image();
-              img.src = 'Assets/Image/background.gif';
-              img.onload = resolve;
-            }),
-            new Promise((_, reject) => 
-              setTimeout(() => reject(new Error('Image load timeout')), 5000)
-            )
-          ]);
-        } catch (error) {
-          console.error('Background image load failed:', error);
-        }
+        // Start background image loading in parallel
+        const bgLoadPromise = Promise.race([
+          new Promise(resolve => {
+            const img = new Image();
+            img.src = 'Assets/Image/Background/background.gif';
+            img.onload = resolve;
+          }),
+          new Promise(resolve => setTimeout(resolve, 1000)) // Shorter timeout
+        ]).catch(() => {
+          console.log('Background image loading timeout, continuing anyway');
+        });
+        
+        // Wait for a maximum of 1 second for image to load
+        await bgLoadPromise;
       } else {
+        // Dark mode transitions faster because no large background image
         document.documentElement.setAttribute('data-theme', 'dark');
         sessionStorage.setItem('theme', 'dark');
         
@@ -146,7 +145,7 @@ export function initThemeSwitch() {
     } catch (error) {
       console.error('Error during theme switch:', error);
       const loadingOverlay = document.querySelector('.loading-overlay');
-      loadingOverlay.classList.remove('show', 'hide');
+      loadingOverlay.classList.add('hide');
       mainContent.style.opacity = '1';
       isThemeSwitching = false;
       toggleSwitch.disabled = false;

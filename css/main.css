@@ -369,14 +369,15 @@ a {
     width: 100%;
     height: 100%;
     background: #000;
-    display: none;
+    display: flex;
     flex-direction: column; 
     justify-content: center;
     align-items: center;
     gap: 20px;
     z-index: 9999;
-    opacity: 0;
-    visibility: hidden;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
 }
 
 .loading-overlay.show {
@@ -387,7 +388,9 @@ a {
 }
 
 .loading-overlay.hide {
-    animation: fadeOut 0.5s ease-in-out forwards;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0s linear 0.5s;
 }
 
 .loader {

@@ -1,4 +1,3 @@
-
 /*
   Typing Animation
   - Initialize typing animation functionality
@@ -47,15 +46,12 @@ function type() {
 export function resetTyping() {
   if (!typingElement) return;
   
-  isTyping = false;
-  typingElement.textContent = '';
-  textIndex = 0;
-  charIndex = 0;
+  const originalOpacity = typingElement.style.opacity || "1";
+  typingElement.style.opacity = "0.5";
   
   setTimeout(() => {
-    isTyping = true;
-    type();
-  }, 500);
+    typingElement.style.opacity = originalOpacity;
+  }, 300);
 }
 
 // Function to initialize typing animation

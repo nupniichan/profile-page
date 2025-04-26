@@ -30,16 +30,13 @@ document.addEventListener('DOMContentLoaded', async () => {
   const hasVisitedBefore = sessionStorage.getItem('hasVisited');
   
   if (!hasVisitedBefore) {
-    loadingOverlay.classList.add('show');
     sessionStorage.setItem('hasVisited', 'true');
     
     await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    loadingOverlay.classList.add('hide');
-    setTimeout(() => {
-      loadingOverlay.classList.remove('show', 'hide');
-    }, 500);
   }
+  
+  // Hide loading overlay regardless of whether this is first visit or not
+  loadingOverlay.classList.add('hide');
   
   const mainContent = document.querySelector('main');
   if (mainContent) {
