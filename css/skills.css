@@ -107,13 +107,14 @@
 }
 
 .section-title {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     color: var(--text-color);
     padding-bottom: 0.8rem;
     position: relative;
     display: inline-block;
     opacity: 1;
     transform: none;
+    line-height: 1.5;
 }
 
 .section-title::after {
@@ -249,7 +250,7 @@
 .skills-cards {
     display: grid;
     grid-template-columns: repeat(2, 1fr); 
-    gap: 3rem;
+    gap: 3.5rem;
     margin-bottom: 1rem;
 }
 
@@ -297,7 +298,7 @@
 }
 
 .skill-card h3 {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     color: var(--text-color);
     margin-bottom: 1.2rem;
     line-height: 1.5;
@@ -314,7 +315,7 @@
 .languages-container {
     display: flex;
     justify-content: space-around;
-    gap: 2.5rem;
+    gap: 3.5rem;
     flex-wrap: wrap;
     padding: 1rem 0;
     width: 100%;
@@ -599,8 +600,8 @@
 
 @media (max-width: 992px) {
     .skills-content {
-        padding: 3rem 2rem;
-        gap: 3rem;
+        padding: 4rem 3rem;
+        gap: 5rem;
     }
     
     .section-header h1 {
@@ -613,21 +614,24 @@
     
     .section-title {
         font-size: 1.6rem;
+        line-height: 1.5;
+        margin-bottom: 1rem;
     }
     
     .skill-category {
         padding: 2rem;
     }
     
-    .skills-cards {
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 3rem;
-        padding: 0 1rem;
+    .skills-grid {
+        gap: 3.5rem;
     }
     
-    .skill-card {
-        padding: 2rem;
-        min-height: 200px;
+    .skills-cards {
+        gap: 3.5rem;
+    }
+    
+    .languages-container {
+        gap: 3.5rem;
     }
 }
 
@@ -637,22 +641,22 @@
     }
     
     .skills-content {
-        padding: 2.5rem 1.5rem;
-        gap: 2.5rem;
+        padding: 1rem 2rem;
+        gap: 1rem;
     }
     
     .skills-grid {
         grid-template-columns: 1fr;
-        gap: 2rem;
+        gap: 3.5rem;
     }
     
     .skills-cards {
         grid-template-columns: 1fr;
-        gap: 2.5rem;
+        gap: 3.5rem;
     }
     
     .languages-container {
-        gap: 2rem;
+        gap: 3.5rem;
     }
 }
 
@@ -666,15 +670,16 @@
     }
     
     .skills-content {
-        padding: 2rem 1.2rem;
-        border-radius: 15px;
-        margin-bottom: 1rem;
-        gap: 2rem;
+        padding: 1rem 2rem;
+        border-radius: 20px;
+        margin-bottom: 2rem;
+        gap: 1.5rem;
     }
     
     .section-title {
         font-size: 1.4rem;
-        margin-bottom: 1.5rem;
+        margin-bottom: 0rem;
+        line-height: 1.5;
     }
     
     .skill-category {
@@ -682,11 +687,11 @@
     }
     
     .skills-cards {
-        gap: 2rem;
+        gap: 3.5rem;
     }
     
     .languages-container {
-        gap: 1.5rem;
+        gap: 3.5rem;
     }
 }
 

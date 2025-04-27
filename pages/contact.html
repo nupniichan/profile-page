@@ -173,6 +173,7 @@
         });
     </script>
     
+    <!-- Script for QR Code Model -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const modal = document.getElementById('qrModal');
@@ -186,23 +187,33 @@
                 zalo: '../Assets/Image/QR/zalo-qr.jpg'
             };
             
+            // Reset the QR image when the modal is loaded
+            window.addEventListener('DOMContentLoaded', function() {
+                qrImage.removeAttribute('src');
+            });
+            
             qrButtons.forEach(button => {
                 button.addEventListener('click', function() {
                     const platform = this.getAttribute('data-platform');
+                    console.log('Loading QR for platform:', platform);
+                    console.log('QR image path:', qrCodes[platform]);
                     
-                    const img = new Image();
-                    img.onload = function() {
-                        qrImage.src = qrCodes[platform];
-                        qrTitle.textContent = platform === 'telegram' ? 'Telegram QR Code' : 'Zalo QR Code';
-                        modal.style.display = 'block';
-                        
-                        document.body.classList.add('modal-open');
-                        
-                        setTimeout(() => {
-                            qrImage.classList.add('qr-image-visible');
-                        }, 100);
-                    };
-                    img.src = qrCodes[platform];
+                    // Clear any existing src
+                    qrImage.removeAttribute('src');
+                    
+                    // Force a reflow
+                    void qrImage.offsetWidth;
+                    
+                    qrImage.src = qrCodes[platform];
+                    console.log('Set QR image src to:', qrImage.src);
+                    
+                    qrTitle.textContent = platform === 'telegram' ? 'Telegram QR Code' : 'Zalo QR Code';
+                    modal.style.display = 'block';
+                    document.body.classList.add('modal-open');
+                    
+                    setTimeout(() => {
+                        qrImage.classList.add('qr-image-visible');
+                    }, 100);
                 });
             });
             

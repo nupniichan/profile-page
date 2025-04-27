@@ -173,7 +173,7 @@
     .sidebar-footer {
         padding: 1rem 0.5rem;
         position: relative;
-        bottom: 0;
+        bottom: 20px;
         width: 100%;
         box-sizing: border-box;
     }
@@ -194,7 +194,7 @@
         display: flex;
         justify-content: center;
         gap: 15px;
-        padding: 15px;
+        padding: 20px;
         margin: 0;
     }
 
@@ -315,6 +315,7 @@
 
     .about-header h1 {
         font-size: 1.5rem;
+        line-height: 1.5rem;
     }
 
     .interests-card ul {
@@ -337,6 +338,7 @@
 
     .about-header h1 {
         font-size: 1.2rem;
+        line-height: 2rem;
     }
 
     .profile-image {

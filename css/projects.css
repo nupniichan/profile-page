@@ -10,6 +10,7 @@
     max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
+    box-sizing: border-box;
 }
 
 .section-header {
@@ -187,7 +188,7 @@
     color: var(--text-color);
     margin-bottom: 0.5rem;
     font-size: 1.4rem;
-    line-height: ;
+    line-height: 1.4;
 }
 
 .project-info h3 i {
@@ -220,7 +221,7 @@
 
 .project-links {
     display: flex;
-    gap: 1rem;
+    gap: 1.5rem;
 }
 
 .btn {
@@ -266,11 +267,15 @@
 @media (max-width: 1024px) {
     .projects-container {
         padding: 1.5rem;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
     }
     
     .projects-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 1.5rem;
+        padding: 0.5rem;
     }
     
     .section-header h1 {
@@ -281,6 +286,10 @@
 @media (max-width: 768px) {
     .projects-container {
         padding: 1rem;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        overflow-x: hidden;
     }
     
     .section-header h1 {
@@ -290,12 +299,22 @@
     .projects-grid {
         grid-template-columns: 1fr;
         gap: 1.5rem;
+        padding: 0;
+        width: 100%;
     }
     
     .project-card {
-        max-width: 500px;
+        max-width: 100%;
         margin-left: auto;
         margin-right: auto;
+    }
+    
+    .projects-section {
+        padding: 1.5rem;
+        margin: 0 auto 1.5rem;
+        width: 100%;
+        box-sizing: border-box;
+        border-radius: 15px;
     }
     
     .skill-category {
@@ -308,6 +327,14 @@
         font-size: 1.8rem;
     }
     
+    .section-header h2 {
+        font-size: 1.6rem;
+    }
+    
+    .project-info {
+        padding: 1rem;
+    }
+    
     .project-info h3 {
         font-size: 1.2rem;
     }
@@ -317,12 +344,32 @@
         text-align: justify;
     }
     
+    .project-tags {
+        gap: 0.3rem;
+    }
+    
     .project-tags span {
         font-size: 0.7rem;
+        padding: 0.2rem 0.6rem;
     }
     
     .btn {
         font-size: 0.8rem;
-        padding: 0.4rem 0.8rem;
+    }
+    
+    .projects-section {
+        padding: 1.5rem;
+        border-radius: 12px;
+        overflow: hidden;
+    }
+    
+    .projects-container {
+        padding: 0.8rem;
+        overflow-x: hidden;
+    }
+    
+    .projects-grid {
+        width: 100%;
+        padding: 0;
     }
 } 
