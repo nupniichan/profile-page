@@ -62,6 +62,6 @@ export function initTypingAnimation() {
     setTimeout(() => {
       isTyping = true;
       type();
-    }, 3000);
+    }, 500);
   }
 } 
