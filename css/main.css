@@ -14,6 +14,8 @@
     padding: 0;
     margin: 0;
     transition: all 0.3s ease-in-out;
+    scrollbar-width: auto;
+    scrollbar-color: #CCCCFF rgba(0, 0, 0, 0.1);
 }
 
 :root {
@@ -407,4 +409,33 @@ a {
     font-size: 1.2rem;
     font-weight: 500;
     animation: pulse 1.5s ease-in-out infinite;
+}
+
+::-webkit-scrollbar {
+    width: 20px;
+    height: 20px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(128, 128, 128, 0.2);
+    border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #CCCCFF, #9999FF);
+    border-radius: 8px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #BBBBFF, #8888FF);
+}
+
+::-webkit-scrollbar-thumb:active {
+    background: linear-gradient(180deg, #AAAAFF, #7777FF);
+}
+
+::-webkit-scrollbar-corner {
+    background: rgba(128, 128, 128, 0.2);
 }
