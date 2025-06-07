@@ -163,6 +163,12 @@ body {
         box-sizing: border-box;
         display: flex;
         flex-direction: column;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+    
+    .sidebar::-webkit-scrollbar {
+        display: none;
     }
     
     .sidebar.active {
@@ -348,6 +354,12 @@ body {
         width: 100%;
         transform: translateX(-100%);
         padding: 0.8rem;
+        scrollbar-width: none; 
+        -ms-overflow-style: none; 
+    }
+    
+    .sidebar::-webkit-scrollbar {
+        display: none;
     }
     
     .sidebar.active {
