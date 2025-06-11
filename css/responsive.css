@@ -178,7 +178,6 @@ body {
     .sidebar-nav {
         flex: 1;
         padding: 0.5rem;
-        margin-top: 2rem;
     }
     
     .sidebar-nav ul li a {
